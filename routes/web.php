@@ -7,3 +7,6 @@ Route::get('/', function () {
 });
 
 Route::get('/about' , App\Http\Controllers\Controller::class)->name();
+//
+//
+//
