@@ -1,14 +1,10 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/about' , App\Http\Controllers\Controller::class)->name();
-//
-//
-//
-//
-///
+Route::resource('users', UserController::class);
