@@ -6,9 +6,10 @@
     <form action="{{ route('user.update', $user->id) }}" method="POST">
         @csrf
         @method('PUT')
-        <label>Papka nomi:</label>
+        <label>User name:</label>
         <input type="text" name="name" value="{{ $user->nomi }}">
         <button type="submit">Update</button>
+
     </form>
 @endsection
 

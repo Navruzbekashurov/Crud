@@ -7,7 +7,7 @@
     <ul>
         @foreach($users as $user)
             <li>
-                {{ $user->name }}
+                <a href="user/{{$user->id}}" >{{ $user->name }}</a>
                 <a href="{{ route('user.edit', $user->id) }}">Edit</a>
                 <form action="{{ route('user.destroy', $user->id) }}" method="POST" style="display:inline;">
                     @csrf
