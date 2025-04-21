@@ -6,7 +6,7 @@
     <form action="{{ route('user.store') }}" method="POST">
         @csrf
         <label>Users:</label>
-        <input type="text" name="nomi">
+        <input type="text" name="name">
         <button type="submit">Save</button>
     </form>
 @endsection
