@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Dtos\User\StoreUserDto;
+use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Http\Request;
-use function Laravel\Prompts\text;
 
 class UserController extends Controller
 {
+    public function __construct(private readonly UserService $userService)
+    {
+    }
+
     public function index()
     {
        $users = User::all();
@@ -18,20 +24,13 @@ class UserController extends Controller
     public function create()
     {
         return view('create');
-
     }
 
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        $request->validate([
-            'name'=>'required',
-            'email'=>'required||email',
-            'password'=>'required'
-        ]);
+        $this->userService->create(StoreUserDto::fromRequest($request));
 
-        User::create($request->post());
         return redirect()->route('user.index');
-
     }
 
     public function show(User $user)
@@ -46,6 +45,7 @@ class UserController extends Controller
     }
     public function update(Request $request, User $user)
     {
+        //buniyam tepada qganinmga oxshatib qilin
         $request->validate([
             'name'=>'required',
             'email'=>'required|email|unique:users,email',
