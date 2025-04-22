@@ -23,8 +23,5 @@ class UserService
         $user->name= $dto->name;
         $user->email = $dto->email;
         $user->save();
-
-
-
     }
 }

@@ -20,7 +20,6 @@ class UserController extends Controller
     {
        $users = User::all();
        return view('index', compact('users'));
-
     }
 
     public function create()
@@ -57,7 +56,5 @@ class UserController extends Controller
     {
         $user->delete();
         return redirect()->route('user.index')->with('success');
-
     }
-    //
 }
