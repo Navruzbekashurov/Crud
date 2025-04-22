@@ -7,7 +7,9 @@
         @csrf
         @method('PUT')
         <label>User name:</label>
-        <input type="text" name="name" value="{{ $user->nomi }}">
+        <input type="text" name="name">
+        <label>User email:</label>
+        <input type="email" name="email">
         <button type="submit">Update</button>
 
     </form>

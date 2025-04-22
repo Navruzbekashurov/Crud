@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Dtos\User\StoreUserDto;
+use App\Dtos\User\UpdateUserDto;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
@@ -43,16 +45,11 @@ class UserController extends Controller
         return view('edit',compact('user'));
 
     }
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, int $id)
     {
         //buniyam tepada qganinmga oxshatib qilin
-        $request->validate([
-            'name'=>'required',
-            'email'=>'required|email|unique:users,email',
-            'password'=>'required'
-        ]);
-        $user->fill($request->post())->save();
-
+        $dto = UpdateUserDto::fromRequest($request);
+        $this->userService->update($id, $dto);
         return redirect()->route('user.index')->with('success');
     }
 
