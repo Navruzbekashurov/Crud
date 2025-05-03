@@ -18,42 +18,41 @@ class UserController extends Controller
     public function index()
     {
        $users = User::all();
-       return view('index', compact('users'));
+       return view('users.index', compact('users'));
     }
 
     public function create()
     {
-        return view('create');
+        return view('users.create');
     }
 
     public function store(StoreUserRequest $request)
     {
         $this->userService->create(StoreUserDto::fromRequest($request));
 
-        return redirect()->route('user.index');
+        return redirect()->route('users.index');
     }
 
     public function show(User $user)
     {
-        return view('show',compact('user'));
+        return view('users.show',compact('user'));
 
     }
     public function edit(User $user)
     {
-        return view('edit',compact('user'));
+        return view('users.edit',compact('user'));
 
     }
     public function update(UpdateUserRequest $request, int $id)
     {
-        //buniyam tepada qganinmga oxshatib qilin
-        $dto = UpdateUserDto::fromRequest($request);
-        $this->userService->update($id, $dto);
-        return redirect()->route('user.index')->with('success');
+        $this->userService->update($id, UpdateUserDto::fromRequest($request));
+
+        return redirect()->route('users.index')->with('success');
     }
 
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('user.index')->with('success');
+        return redirect()->route('users.index')->with('success');
     }
 }
