@@ -11,7 +11,7 @@ services:
         volumes:
             - restaurant-db:/var/lib/mysql
         ports:
-            - "33060:3306"
+            - "3307:3306"
         networks:
             - restaurant-network
 
