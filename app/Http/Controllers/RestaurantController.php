@@ -11,7 +11,6 @@ class RestaurantController extends Controller
         $restaurants = Restaurant::all();
 
         return view('restaurants.index', compact('restaurants'));
-
     }
 
     public function store()
@@ -19,5 +18,9 @@ class RestaurantController extends Controller
 
     }
 
+    public function create()
+    {
+        return view('restaurants.create');
+    }
 
 }

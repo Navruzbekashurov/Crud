@@ -8,8 +8,8 @@
                         <i class="fas fa-users mr-2"></i>User Management
                     </a>
                 </div>
-                <x-nav-link route="users.index" icon="fa-list" text="Users" />
-{{--                <x-nav-link route="companies.index" icon="fa-list" text="Companies" />--}}
+                <x-nav-link route="users.index" icon="fa-list" text="Users"/>
+                <x-nav-link route="restaurants.index" icon="fa-list" text="Restaurants"/>
             </div>
         </div>
     </div>
