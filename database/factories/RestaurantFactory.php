@@ -2,22 +2,25 @@
 
 namespace Database\Factories;
 
+use App\Models\Restaurant;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Carbon;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Restaurant>
- */
 class RestaurantFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = Restaurant::class;
+
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'address' => $this->faker->address(),
+            'founded_at' => Carbon::now(),
+            'employee_numbers' => $this->faker->randomNumber(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+            'founder_id' => User::factory(),
         ];
     }
 }

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Dtos\User\StoreUserDto;
 use App\Dtos\User\UpdateUserDto;
-use App\Http\Requests\StoreUserRequest;
-use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\Users\StoreUserRequest;
+use App\Http\Requests\Users\UpdateUserRequest;
 use App\Models\User;
 use App\Services\UserService;
 
@@ -17,13 +17,8 @@ class UserController extends Controller
 
     public function index()
     {
-       $users = User::all();
-       return view('users.index', compact('users'));
-    }
-
-    public function create()
-    {
-        return view('users.create');
+        $users = User::all();
+        return view('users.index', compact('users'));
     }
 
     public function store(StoreUserRequest $request)
@@ -33,16 +28,23 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
 
+    public function create()
+    {
+        return view('users.create');
+    }
+
     public function show(User $user)
     {
-        return view('users.show',compact('user'));
+        return view('users.show', compact('user'));
 
     }
+
     public function edit(User $user)
     {
-        return view('users.edit',compact('user'));
+        return view('users.edit', compact('user'));
 
     }
+
     public function update(UpdateUserRequest $request, int $id)
     {
         $this->userService->update($id, UpdateUserDto::fromRequest($request));

@@ -2,7 +2,7 @@
 
 namespace App\Dtos\User;
 
-use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\Users\UpdateUserRequest;
 
 class UpdateUserDto
 {

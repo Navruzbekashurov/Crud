@@ -2,7 +2,7 @@
 
 namespace App\Dtos\User;
 
-use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\Users\StoreUserRequest;
 
 class StoreUserDto
 {
