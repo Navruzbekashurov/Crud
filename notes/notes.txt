@@ -1,0 +1,7 @@
+users -> done
+restaurants bellissimo(name, address, founded_at, employee_numbers, founder)
+branch
+menu
+menu_item -> shorva, osh
+
+food -> shorva, osh

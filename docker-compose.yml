@@ -1,0 +1,24 @@
+services:
+    restaurant-db:
+        image: mysql:8.0
+        container_name: restaurant-mysql
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: mypassword
+            MYSQL_USER: myuser
+            MYSQL_PASSWORD: mypassword
+            MYSQL_DATABASE: restaurant
+        volumes:
+            - restaurant-db:/var/lib/mysql
+        ports:
+            - "33060:3306"
+        networks:
+            - restaurant-network
+
+networks:
+    restaurant-network:
+        driver: bridge
+
+volumes:
+    restaurant-db:
+        driver: local
