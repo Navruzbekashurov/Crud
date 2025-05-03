@@ -14,23 +14,23 @@
         </div>
     @endif
 
-    <form action="{{ route('user.update', $user->id) }}" method="POST" class="space-y-5">
+    <form action="{{ route('users.update', $user->id) }}" method="POST" class="space-y-5">
         @csrf
         @method('PUT')
-        
+
         <div>
             <label for="name" class="block text-sm font-medium text-gray-700">User Name</label>
-            <input type="text" name="name" id="name" value="{{ $user->name }}" 
+            <input type="text" name="name" id="name" value="{{ $user->name }}"
                    class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200">
         </div>
 
         <div>
             <label for="email" class="block text-sm font-medium text-gray-700">User Email</label>
-            <input type="email" name="email" id="email" value="{{ $user->email }}" 
+            <input type="email" name="email" id="email" value="{{ $user->email }}"
                    class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200">
         </div>
 
-        <button type="submit" 
+        <button type="submit"
                 class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition">
             Update User
         </button>
