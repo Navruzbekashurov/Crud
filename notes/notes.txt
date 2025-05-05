@@ -1,5 +1,13 @@
 users -> done
-restaurants bellissimo(name, address, founded_at, employee_numbers, founder)
+restaurants bellissimo(name, address, founded_at, employee_numbers, founder, phone number)
+
+   //1)Restarant larni aloqaga chiqish uchun bir dona asosiy telefon raqami bolishi kerak, va bu unikal bolishi kerak
+    //2)Restaranlarni bir necha ozini branch lari bolishi mumkin, va har bir branchlarni ozini nomi, addressi, is_active
+    //  ishlash vaqti bolishi kerak. Har bir branchda bir nechtadan telefon raqami bolishi mumkin
+    //3)Restarant larni aktivlashtirish va deaktivlashtirish uchun yangi funksional kere, deaktivlashtirganda uning barcha
+    // filiallari deaktivatsiya bolishi kere.
+    //4)Restarantlarni nomi boyicha qidirish uchun filter qoshish kere, telefon boyicha qidira olish, aktiv va inactiv boyicha
+
 branch
 menu
 menu_item -> shorva, osh

@@ -28,7 +28,6 @@ class RestaurantController extends Controller
         $this->restaurantService->create(StoreRestaurantsDto::fromRequest($request));
 
         return redirect()->route('restaurants.index');
-
     }
 
     public function create()
@@ -39,7 +38,6 @@ class RestaurantController extends Controller
     public function show(Restaurant $restaurant)
     {
         return view('restaurants.show',compact('restaurant'));
-
     }
 
     public function edit(Restaurant $restaurant)
@@ -58,7 +56,7 @@ class RestaurantController extends Controller
     public function destroy(Restaurant $restaurant)
     {
         $restaurant->delete();
-        return redirect()->route('restaurants.index')->with('success');
 
+        return redirect()->route('restaurants.index')->with('success');
     }
 }
