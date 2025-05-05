@@ -34,5 +34,8 @@ class RestaurantService
         $company->save();
     }
 
+    //1)Restarant larni aktivlashtirish va deaktivlashtirish uchun yangi funksional kere
+    //2)Restarantlarni nomi boyicha qidirish uchun filter qoshish kere
+
 }
 
