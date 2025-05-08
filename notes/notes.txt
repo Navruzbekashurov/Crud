@@ -1,7 +1,7 @@
 users -> done
 restaurants bellissimo(name, address, founded_at, employee_numbers, founder, phone number)
 
-   //1)Restarant larni aloqaga chiqish uchun bir dona asosiy telefon raqami bolishi kerak, va bu unikal bolishi kerak
+   //1)Restarant larni aloqaga chiqish uchun bir dona asosiy telefon raqami bolishi kerak, va bu unikal bolishi kerak, new columnt is_active
     //2)Restaranlarni bir necha ozini branch lari bolishi mumkin, va har bir branchlarni ozini nomi, addressi, is_active
     //  ishlash vaqti bolishi kerak. Har bir branchda bir nechtadan telefon raqami bolishi mumkin
     //3)Restarant larni aktivlashtirish va deaktivlashtirish uchun yangi funksional kere, deaktivlashtirganda uning barcha
