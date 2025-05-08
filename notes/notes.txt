@@ -1,15 +1,22 @@
 users -> done
 restaurants bellissimo(name, address, founded_at, employee_numbers, founder, phone number)
 
-   //1)Restarant larni aloqaga chiqish uchun bir dona asosiy telefon raqami bolishi kerak, va bu unikal bolishi kerak, new columnt is_active
-    //2)Restaranlarni bir necha ozini branch lari bolishi mumkin, va har bir branchlarni ozini nomi, addressi, is_active
-    //  ishlash vaqti bolishi kerak. Har bir branchda bir nechtadan telefon raqami bolishi mumkin
+    //4)Restarantlarni nomi boyicha qidirish uchun filter qoshish kere, telefon boyicha qidira olish, aktiv va inactiv boyicha
+    //1)Restarant larni aloqaga chiqish uchun bir dona asosiy telefon raqami bolishi kerak, va bu unikal bolishi kerak, new columnt is_active
     //3)Restarant larni aktivlashtirish va deaktivlashtirish uchun yangi funksional kere, deaktivlashtirganda uning barcha
     // filiallari deaktivatsiya bolishi kere.
-    //4)Restarantlarni nomi boyicha qidirish uchun filter qoshish kere, telefon boyicha qidira olish, aktiv va inactiv boyicha
+    //2)Restaranlarni bir necha ozini branch lari bolishi mumkin, va har bir branchlarni ozini nomi, addressi, is_active
+    //  ishlash vaqti bolishi kerak. Har bir branchda bir nechtadan telefon raqami bolishi mumkin
+
 
 branch
 menu
 menu_item -> shorva, osh
 
 food -> shorva, osh
+
+
+belissimo -> restaraunt -> is_active = false /////// is_active = true
+    belissimo1 -> branch -> is_active = false
+    belissimo2 -> branch -> is_active = false
+    belissimo3 -> branch -> is_active = false
