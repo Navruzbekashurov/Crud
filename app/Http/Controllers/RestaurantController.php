@@ -10,13 +10,14 @@ use App\Http\Requests\Restaurant\UpdateRestaurantRequest;
 use App\Models\Restaurant;
 use App\Services\RestaurantService;
 use App\Services\UserService;
+use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
 {
     public function __construct(private readonly RestaurantService $restaurantService)
     {
     }
-    public function index()
+    public function index(Request $request)
     {
         $restaurants = Restaurant::all();
 
