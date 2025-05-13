@@ -82,8 +82,8 @@
                                     @method('PUT')
                                     <button type="submit"
                                             class="px-3 py-1 rounded-lg text-sm font-semibold
-                       {{ $restaurant->active ? 'bg-green-100 text-green-800 hover:bg-green-200' : 'bg-red-100 text-red-800 hover:bg-red-200' }}">
-                                        {{ $restaurant->active ? 'Active' : 'Inactive' }}
+                       {{ $restaurant->is_active ? 'bg-green-100 text-green-800 hover:bg-green-200' : 'bg-red-100 text-red-800 hover:bg-red-200' }}">
+                                        {{ $restaurant->is_active ? 'Active' : 'Inactive' }}
                                     </button>
                                 </form>
                                 <a href="/restaurants/{{ $restaurant->id }}"
