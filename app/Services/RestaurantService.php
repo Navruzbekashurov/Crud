@@ -19,6 +19,7 @@ class RestaurantService
         $company->founded_at = $dto->founded_at;
         $company->employee_numbers = $dto->employee_numbers;
         $company->founder_id = $dto->founder_id;
+        $company->phone_numbers=$dto->phone_numbers;
         $company->save();
     }
 
@@ -31,6 +32,7 @@ class RestaurantService
         $company->founded_at = $dto->founded_at;
         $company->employee_numbers = $dto->employee_numbers;
         $company->founder_id = $dto->founder_id;
+        $company->phone_numbers=$dto->phone_numbers;
         $company->save();
     }
 

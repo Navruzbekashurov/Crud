@@ -19,7 +19,13 @@ class RestaurantController extends Controller
     }
     public function index(Request $request)
     {
-        $restaurants = Restaurant::all();
+        $restaurants = Restaurant::query()
+            ->when($request->name, fn($query, $name) => $query->where('name', 'like', "%$name%"))
+            ->when($request->phone, fn($query, $phone_numbers) => $query->where('phone_numbers', 'like', "%$phone_numbers%"))
+            ->when($request->address, fn($query, $address) => $query->where('address','like', $address))
+            ->when($request->active !==null, fn($query, $active) => $query->where('is_active', $request->active))
+            ->get();
+
 
         return view('restaurants.index', compact('restaurants'));
     }

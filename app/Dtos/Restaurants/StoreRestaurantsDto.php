@@ -14,6 +14,7 @@ class StoreRestaurantsDto
         public string $founded_at,
         public  int $employee_numbers,
         public int $founder_id,
+        public int $phone_numbers
     )
     {
     }
@@ -26,6 +27,7 @@ class StoreRestaurantsDto
             $request->validated('founded_at'),
             $request->validated('employee_numbers'),
             $request->validated('founder_id'),
+            $request->validated('phone_numbers')
         );
 
     }

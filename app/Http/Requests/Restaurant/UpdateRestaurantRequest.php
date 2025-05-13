@@ -14,6 +14,7 @@ class UpdateRestaurantRequest extends FormRequest
             'founded_at' => ['required', 'date'],
             'employee_numbers' => ['required', 'integer'],
             'founder_id' => ['required', 'exists:users,id'],
+            'phone_numbers'=>['required','unique:restaurants,phone_numbers']
         ];
     }
 

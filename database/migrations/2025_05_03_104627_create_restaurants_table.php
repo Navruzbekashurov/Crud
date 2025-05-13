@@ -18,6 +18,8 @@ return new class extends Migration
             $table->timestamp('founded_at');
             $table->unsignedInteger('employee_numbers');
             $table->unsignedBigInteger('founder_id');
+            $table->string('phone_numbers', 20)->unique();
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
 
 

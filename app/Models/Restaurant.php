@@ -17,7 +17,9 @@ class Restaurant extends Model
         'address',
         'founded_at',
         'employee_numbers',
-        'founder_id'
+        'founder_id',
+        'phone_numbers'
+
     ];
 
     public function founder(): BelongsTo
