@@ -51,9 +51,19 @@
                 <tr>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Address</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Founder Name</th>
-                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone
+                        Number
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Address
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Founder
+                        Name
+                    </th>
+                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Actions
+                    </th>
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
@@ -61,6 +71,8 @@
                     <tr class="hover:bg-gray-50">
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $restaurant->id }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $restaurant->name }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $restaurant->phone_number }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ boolval($restaurant->is_active) }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $restaurant->address }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $restaurant->founder->name }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
