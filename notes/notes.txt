@@ -20,3 +20,9 @@ belissimo -> restaraunt -> is_active = false /////// is_active = true
     belissimo1 -> branch -> is_active = false
     belissimo2 -> branch -> is_active = false
     belissimo3 -> branch -> is_active = false
+
+Genearate a new pdf file zapros -> success
+        -> job(generate a new pdf file)->send(toUser)
+
+login -> redirect check email
+       -> job(send a welcome email)
