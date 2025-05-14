@@ -3,7 +3,6 @@
 namespace App\Dtos\Restaurants;
 
 use App\Http\Requests\Restaurant\StoreRestaurantRequest;
-use Illuminate\Support\Carbon;
 
 class StoreRestaurantsDto
 {
@@ -12,9 +11,9 @@ class StoreRestaurantsDto
         public string $name,
         public string $address,
         public string $founded_at,
-        public  int $employee_numbers,
-        public int $founder_id,
-        public int $phone_numbers
+        public int    $employee_numbers,
+        public int    $founder_id,
+        public int    $phone_number
     )
     {
     }
@@ -27,7 +26,7 @@ class StoreRestaurantsDto
             $request->validated('founded_at'),
             $request->validated('employee_numbers'),
             $request->validated('founder_id'),
-            $request->validated('phone_numbers')
+            $request->validated('phone_number')
         );
 
     }

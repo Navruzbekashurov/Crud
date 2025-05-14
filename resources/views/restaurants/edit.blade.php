@@ -51,6 +51,11 @@
                        class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200">
             </div>
 
+            <div>
+                <label for="phone_numbers" class="block text-sm font-medium text-gray-700">PhoneNumbers</label>
+                <input type="number" name="phone_number" id="phone_number" value="{{ old('phone_number') }}"
+                       class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200">
+            </div>
             <div class="flex justify-between">
                 <a href="{{ route('restaurants.index') }}"
                    class="bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">

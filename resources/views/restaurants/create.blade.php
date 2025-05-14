@@ -42,7 +42,7 @@
             </div>
             <div>
                 <label for="phone_numbers" class="block text-sm font-medium text-gray-700">PhoneNumbers</label>
-                <input type="number" name="phone_numbers" id="phone_numbers" value="{{ old('phone_numbers') }}"
+                <input type="number" name="phone_number" id="phone_number" value="{{ old('phone_number') }}"
                        class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200">
             </div>
 

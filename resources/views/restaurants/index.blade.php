@@ -70,10 +70,10 @@
                 @foreach($restaurants as $restaurant)
                     <tr class="hover:bg-gray-50">
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $restaurant->id }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $restaurant->name }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ Str::limit($restaurant->name, 10) }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $restaurant->phone_number }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ boolval($restaurant->is_active) }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $restaurant->address }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $restaurant->is_active }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ Str::limit($restaurant->address, 10) }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $restaurant->founder->name }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                             <div class="flex justify-end space-x-2">

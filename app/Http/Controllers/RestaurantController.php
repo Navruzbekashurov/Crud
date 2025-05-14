@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Dtos\Restaurants\StoreRestaurantsDto;
 use App\Dtos\Restaurants\UpdateRestaurantsDto;
-use App\Dtos\User\UpdateUserDto;
 use App\Http\Requests\Restaurant\StoreRestaurantRequest;
 use App\Http\Requests\Restaurant\UpdateRestaurantRequest;
 use App\Models\Restaurant;
 use App\Services\RestaurantService;
-use App\Services\UserService;
 use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
@@ -17,13 +15,15 @@ class RestaurantController extends Controller
     public function __construct(private readonly RestaurantService $restaurantService)
     {
     }
+
     public function index(Request $request)
     {
         $restaurants = Restaurant::query()
             ->when($request->name, fn($query, $name) => $query->where('name', 'like', "%$name%"))
             ->when($request->phone, fn($query, $phone_numbers) => $query->where('phone_numbers', 'like', "%$phone_numbers%"))
-            ->when($request->address, fn($query, $address) => $query->where('address','like', $address))
-            ->when($request->active !==null, fn($query, $active) => $query->where('is_active', $request->active))
+            ->when($request->address, fn($query, $address) => $query->where('address', 'like', "%$address%"))
+//            ->when($request->address, fn($query, $address) => $query->where('address', $address))
+            ->when($request->active !== null, fn($query, $active) => $query->where('is_active', $request->active))
             ->get();
 
 
@@ -44,7 +44,7 @@ class RestaurantController extends Controller
 
     public function show(Restaurant $restaurant)
     {
-        return view('restaurants.show',compact('restaurant'));
+        return view('restaurants.show', compact('restaurant'));
     }
 
     public function edit(Restaurant $restaurant)
@@ -53,7 +53,7 @@ class RestaurantController extends Controller
 
     }
 
-    public function update(UpdateRestaurantRequest $request, int $id )
+    public function update(UpdateRestaurantRequest $request, int $id)
     {
         $this->restaurantService->update($id, UpdateRestaurantsDto::fromRequest($request));
 
@@ -66,4 +66,10 @@ class RestaurantController extends Controller
 
         return redirect()->route('restaurants.index')->with('success');
     }
+
+    public function toggleActive()
+    {
+        //Logic
+    }
+
 }
