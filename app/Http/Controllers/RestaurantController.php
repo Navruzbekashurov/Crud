@@ -50,7 +50,6 @@ class RestaurantController extends Controller
     public function edit(Restaurant $restaurant)
     {
         return view('restaurants.edit', compact('restaurant'));
-
     }
 
     public function update(UpdateRestaurantRequest $request, int $id)

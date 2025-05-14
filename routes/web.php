@@ -9,4 +9,4 @@ Route::get('/', function () {
 });
 
 Route::resource('users', UserController::class);
-Route::resource('restaurants', RestaurantController::class);
+Route::resource('restaurants', RestaurantController::class)->middleware(['simple', 'simple1']);
