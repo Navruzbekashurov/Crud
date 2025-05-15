@@ -68,9 +68,21 @@ class RestaurantController extends Controller
 
     public function toggleActive(int $id)
     {
-        // berilgan id boyicha restarantni topin
-        // restartan yo bosa exception tashen
+        // berilgan id boyicha restarantni topin)
+        // restartan yo bosa exception tashen)
+        $restaurants = Restaurant::find($id);
+        if (!$restaurants){
+            throw new \Exception('restran topilmadi');
+        }
+        if ($restaurants->is_active){
+            $restaurants->is_active=false;
+        }else{
+            $restaurants->is_active=true;
+
+        }
+        $restaurants->save();
         // keyin restaranni is_active ni naborotini qilin -> true / false     false / true
+
         // save qilishez
 
         return redirect()->route('restaurants.index')->with('success');
