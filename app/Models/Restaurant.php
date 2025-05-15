@@ -29,4 +29,10 @@ class Restaurant extends Model
     {
         return $this->belongsTo(User::class, 'founder_id', 'id');
     }
+
+    public function branches()
+    {
+        return $this->hasMany(Branch::class);
+
+    }
 }
