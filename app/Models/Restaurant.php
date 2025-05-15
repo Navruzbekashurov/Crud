@@ -19,7 +19,10 @@ class Restaurant extends Model
         'employee_numbers',
         'founder_id',
         'phone_numbers'
+    ];
 
+    protected $casts = [
+        'founded_at' => 'date'
     ];
 
     public function founder(): BelongsTo
