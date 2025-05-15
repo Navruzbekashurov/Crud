@@ -66,9 +66,14 @@ class RestaurantController extends Controller
         return redirect()->route('restaurants.index')->with('success');
     }
 
-    public function toggleActive()
+    public function toggleActive(int $id)
     {
-        //Logic
+        // berilgan id boyicha restarantni topin
+        // restartan yo bosa exception tashen
+        // keyin restaranni is_active ni naborotini qilin -> true / false     false / true
+        // save qilishez
+
+        return redirect()->route('restaurants.index')->with('success');
     }
 
 }

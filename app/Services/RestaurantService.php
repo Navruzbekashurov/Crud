@@ -6,6 +6,7 @@ use App\Dtos\Restaurants\StoreRestaurantsDto;
 use App\Dtos\Restaurants\UpdateRestaurantsDto;
 use App\Events\RestaurantCreatedEvent;
 use App\Models\Restaurant;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class RestaurantService
 {
@@ -30,7 +31,14 @@ class RestaurantService
 
     public function update(int $id, UpdateRestaurantsDto $dto): void
     {
-        $restaurant = Restaurant::findOrFail($id);
+        $restaurant = Restaurant::query()
+            ->where('id', $id)
+            ->first();
+
+        if (!$restaurant) {
+            throw new ModelNotFoundException();
+        }
+
         $restaurant->name = $dto->name;
         $restaurant->address = $dto->address;
         $restaurant->founded_at = $dto->founded_at;

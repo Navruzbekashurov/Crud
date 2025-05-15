@@ -10,3 +10,4 @@ Route::get('/', function () {
 
 Route::resource('users', UserController::class);
 Route::resource('restaurants', RestaurantController::class)->middleware(['simple', 'simple1']);
+Route::put('/restaurants/{id}/toggle-active', [RestaurantController::class, 'toggleActive']);
