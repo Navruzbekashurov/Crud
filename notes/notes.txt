@@ -26,3 +26,9 @@ Genearate a new pdf file zapros -> success
 
 login -> redirect check email
        -> job(send a welcome email)
+
+Entity -> сущность
+       -> Car
+            -> Car
+            -> Wheels
+            -> Seats
