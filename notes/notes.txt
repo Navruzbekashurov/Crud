@@ -32,3 +32,53 @@ Entity -> сущность
             -> Car
             -> Wheels
             -> Seats
+
+request
+branch -> crud
+    restaurant_id
+    name
+    address
+    is_active
+
+branch_phone_numbers -> add_branch_phones, delete_branch_phones
+     phone
+     branch_id
+
+branch_working_days
+    [
+        [
+            branch_id
+            day
+            open_time
+            close_time
+            day_off
+        ],
+        [
+            branch_id
+            day
+            open_time
+            close_time
+            day_off
+        ],
+        [
+            branch_id
+            day
+            open_time
+            close_time
+            day_off
+        ],
+        [
+            branch_id
+            day
+            open_time
+            close_time
+            day_off
+        ],
+        [
+            branch_id
+            day
+            open_time
+            close_time
+            day_off
+        ]
+    ]

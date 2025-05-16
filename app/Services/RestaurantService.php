@@ -6,6 +6,7 @@ use App\Dtos\Restaurants\StoreRestaurantsDto;
 use App\Dtos\Restaurants\UpdateRestaurantsDto;
 use App\Events\RestaurantCreatedEvent;
 use App\Models\Restaurant;
+use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class RestaurantService
@@ -46,6 +47,21 @@ class RestaurantService
         $restaurant->founder_id = $dto->founder_id;
         $restaurant->phone_number = $dto->phone_number;
         $restaurant->save();
+    }
+
+    public function toggleActive(int $id): void
+    {
+        $restaurants = Restaurant::query()
+            ->where('id', $id)
+            ->first();
+
+        if (!$restaurants) {
+            throw new Exception('restran topilmadi');
+        }
+
+        $restaurants->is_active = !$restaurants->is_active;
+
+        $restaurants->save();
     }
 
 }

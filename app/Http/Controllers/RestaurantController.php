@@ -8,6 +8,7 @@ use App\Http\Requests\Restaurant\StoreRestaurantRequest;
 use App\Http\Requests\Restaurant\UpdateRestaurantRequest;
 use App\Models\Restaurant;
 use App\Services\RestaurantService;
+use Exception;
 use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
@@ -20,7 +21,7 @@ class RestaurantController extends Controller
     {
         $restaurants = Restaurant::query()
             ->when($request->name, fn($query, $name) => $query->where('name', 'like', "%$name%"))
-            ->when($request->phone, fn($query, $phone_numbers) => $query->where('phone_numbers', 'like', "%$phone_numbers%"))
+            ->when($request->phone, fn($query, $phone_numbers) => $query->where('phone_number', 'like', "%$phone_numbers%"))
             ->when($request->address, fn($query, $address) => $query->where('address', 'like', "%$address%"))
 //            ->when($request->address, fn($query, $address) => $query->where('address', $address))
             ->when($request->active !== null, fn($query, $active) => $query->where('is_active', $request->active))
@@ -66,24 +67,12 @@ class RestaurantController extends Controller
         return redirect()->route('restaurants.index')->with('success');
     }
 
+    /**
+     * @throws Exception
+     */
     public function toggleActive(int $id)
     {
-        // berilgan id boyicha restarantni topin)
-        // restartan yo bosa exception tashen)
-        $restaurants = Restaurant::find($id);
-        if (!$restaurants){
-            throw new \Exception('restran topilmadi');
-        }
-        if ($restaurants->is_active){
-            $restaurants->is_active=false;
-        }else{
-            $restaurants->is_active=true;
-
-        }
-        $restaurants->save();
-        // keyin restaranni is_active ni naborotini qilin -> true / false     false / true
-
-        // save qilishez
+        $this->restaurantService->toggleActive($id);
 
         return redirect()->route('restaurants.index')->with('success');
     }
