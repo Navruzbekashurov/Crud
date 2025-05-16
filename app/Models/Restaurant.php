@@ -6,6 +6,7 @@ use Database\Factories\RestaurantFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Restaurant extends Model
 {
@@ -30,9 +31,8 @@ class Restaurant extends Model
         return $this->belongsTo(User::class, 'founder_id', 'id');
     }
 
-    public function branches()
+    public function branches(): HasMany
     {
         return $this->hasMany(Branch::class);
-
     }
 }

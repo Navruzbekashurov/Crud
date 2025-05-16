@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="border-b pb-4">
-                    <h2 class="text-sm font-medium text-gray-500">EmployeeNumbers</h2>
+                    <h2 class="text-sm font-medium text-gray-500">Employee Numbers</h2>
                     <p class="mt-1 text-lg text-gray-900">{{ $restaurant->employee_numbers }}</p>
                 </div>
 
@@ -52,4 +52,5 @@
             </div>
         @endif
     </div>
+    @include('restaurants.branches.index')
 @endsection

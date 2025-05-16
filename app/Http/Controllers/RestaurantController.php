@@ -45,6 +45,7 @@ class RestaurantController extends Controller
 
     public function show(Restaurant $restaurant)
     {
+        $restaurant->load('branches');
         return view('restaurants.show', compact('restaurant'));
     }
 
