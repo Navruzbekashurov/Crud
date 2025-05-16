@@ -2,9 +2,7 @@
 
 namespace App\Dtos\Restaurants;
 
-use App\Http\Requests\Restaurant\StoreRestaurantRequest;
 use App\Http\Requests\Restaurant\UpdateRestaurantRequest;
-use Illuminate\Support\Carbon;
 
 class UpdateRestaurantsDto
 {
