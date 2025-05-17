@@ -23,7 +23,8 @@ class Restaurant extends Model
     ];
 
     protected $casts = [
-        'founded_at' => 'date'
+        'founded_at' => 'date',
+        'is_active' => 'boolean'
     ];
 
     public function founder(): BelongsTo
