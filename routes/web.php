@@ -13,14 +13,15 @@ Route::resource('users', UserController::class);
 Route::resource('restaurants', RestaurantController::class)->middleware(['simple', 'simple1']);
 Route::put('/restaurants/{id}/toggle-active', [RestaurantController::class, 'toggleActive']);
 
-Route::prefix('restaurants/{restaurant}/branches')->name('restaurants.branches.')->group(function () {
-    Route::get('/', [BranchController::class, 'index'])->name('index');
-    Route::get('/create', [BranchController::class, 'create'])->name('create');
-    Route::post('/', [BranchController::class, 'store'])->name('store');
-    Route::get('/{branch}', [BranchController::class, 'show'])->name('show');
-    Route::get('/{branch}/edit', [BranchController::class, 'edit'])->name('edit');
-    Route::put('/{branch}', [BranchController::class, 'update'])->name('update');
-    Route::patch('/{branch}', [BranchController::class, 'update']);
-    Route::delete('/{branch}', [BranchController::class, 'destroy'])->name('destroy');
+Route::prefix('restaurants/{restaurant}/branches')
+    ->as('restaurants.branches.')
+    ->group(function () {
+        Route::get('/', [BranchController::class, 'index'])->name('index');            // restaurants.branches.index
+        Route::get('/create', [BranchController::class, 'create'])->name('create');    // restaurants.branches.create
+        Route::post('/', [BranchController::class, 'store'])->name('store');           // restaurants.branches.store
+        Route::get('/{branch}', [BranchController::class, 'show'])->name('show');      // restaurants.branches.show
+        Route::get('/{branch}/edit', [BranchController::class, 'edit'])->name('edit'); // restaurants.branches.edit
+        Route::match(['put', 'patch'], '/{branch}', [BranchController::class, 'update'])->name('update'); // restaurants.branches.update
+        Route::delete('/{branch}', [BranchController::class, 'destroy'])->name('destroy');                // restaurants.branches.destroy
+    });
 
-});
