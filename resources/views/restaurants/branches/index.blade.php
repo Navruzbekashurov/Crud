@@ -2,7 +2,7 @@
 <div class="max-w-3xl mx-auto mt-12">
     <div class="flex items-center justify-between mb-6 border-b pb-2">
         <h2 class="text-2xl font-bold text-gray-800">Branches</h2>
-        <a href="/restaurants/{{ $restaurant->id }}/branches"
+        <a href="/restaurants/{{ $restaurant->id }}/branches/create"
            class="inline-block bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium">
             ➕ Add Branch
         </a>

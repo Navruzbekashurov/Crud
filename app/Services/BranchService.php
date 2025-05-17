@@ -9,14 +9,14 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class BranchService
 {
-    public function create(StoreBranchDto $dto): void
+    public function create(StoreBranchDto $dto): Branch
     {
         $branch = new Branch();
         $branch->restaurant_id = $dto->restaurant_id;
         $branch->name = $dto->name;
         $branch->address = $dto->address;
         $branch->save();
-
+        return $branch;
     }
 
     public function update(int $id, UpdateBranchDto $dto): void

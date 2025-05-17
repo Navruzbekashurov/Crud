@@ -9,19 +9,15 @@ class UpdateBranchRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'restaurant_id' => ['required','exists:restaurant_id'],
-            'name' => ['required'],
-            'address' => ['required'],
-            'is_active' => ['required', 'boolean']
+            'restaurant_id' => ['required', 'exists:restaurants,id'],
+            'name' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
+            'is_active' => ['required', 'boolean',],
         ];
-
     }
-
 
     public function authorize(): bool
     {
         return true;
     }
-
-
 }

@@ -5,12 +5,13 @@ namespace Tests\Feature;
 use App\Models\Branch;
 use App\Models\BranchPhoneNumber;
 use App\Models\Restaurant;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
 
 class RestaurantFeatureTest extends TestCase
 {
-    use WithoutMiddleware;
+    use RefreshDatabase, WithoutMiddleware;
 
     public function test_toggle_active_restaurant()
     {
@@ -24,13 +25,14 @@ class RestaurantFeatureTest extends TestCase
     public function test_create_branch_for_restaurant()
     {
         $restaurant = Restaurant::factory()->create();
+
         $branchData = [
             'restaurant_id' => $restaurant->id,
             'name' => 'Test Branch',
             'address' => 'Test Address',
         ];
         $response = $this->post("/restaurants/{$restaurant->id}/branches", $branchData);
-        $response->assertRedirect("/restaurants/{$restaurant->id}");
+        $response->assertRedirect(route('restaurants.show', ['restaurant' => $restaurant->id]));
         $this->assertDatabaseHas('branches', ['name' => 'Test Branch']);
     }
 

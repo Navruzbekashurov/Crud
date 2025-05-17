@@ -7,6 +7,7 @@ use App\Dtos\Restaurants\Branches\UpdateBranchDto;
 use App\Http\Requests\Branches\StoreBranchRequest;
 use App\Http\Requests\Branches\UpdateBranchRequest;
 use App\Models\Branch;
+use App\Models\Restaurant;
 use App\Services\BranchService;
 use Illuminate\Http\RedirectResponse;
 
@@ -24,38 +25,37 @@ class BranchController extends Controller
 
     public function store(StoreBranchRequest $request): RedirectResponse
     {
-        $this->branchService->create(StoreBranchDto::fromRequest($request));
+        $branch = $this->branchService->create(StoreBranchDto::fromRequest($request));
 
-        return redirect()->route('restaurants.show', ['restaurant' => $request->restaurant_id]);
+        return redirect()->route('restaurants.show', ['restaurant' => $branch->restaurant_id]);
     }
 
-    public function create()
+    public function create(Restaurant $restaurant)
     {
-        return view('restaurants.branches.create');
+        return view('restaurants.branches.create', compact('restaurant'));
     }
 
-    public function edit(Branch $branch)
+    public function edit(Restaurant $restaurant, Branch $branch)
     {
         return view('restaurants.branches.edit', compact('branch'));
     }
 
-    public function show(Branch $branch)
+    public function show(Restaurant $restaurant, Branch $branch)
     {
         return view('restaurants.branches.show', compact('branch'));
     }
 
-    public function update(UpdateBranchRequest $request, int $id)
+    public function update(UpdateBranchRequest $request, Restaurant $restaurant, Branch $branch)
     {
-        $this->branchService->update($id, UpdateBranchDto::fromRequest($request));
-        return redirect()->route('restaurants.show', ['restaurant' => $request->restaurant_id]);
+        $this->branchService->update($branch->id, UpdateBranchDto::fromRequest($request));
+        return redirect()->route('restaurants.show', ['restaurant' => $restaurant->id]);
     }
 
-    public function destroy(Branch $branch): RedirectResponse
+    public function destroy(Restaurant $restaurant, Branch $branch): RedirectResponse
     {
-        $restaurantId = $branch->restaurant_id;
         $branch->delete();
 
-        return redirect()->route('restaurants.show', ['restaurant' => $restaurantId])
+        return redirect()->route('restaurants.show', ['restaurant' => $restaurant->id])
             ->with('success', 'Branch deleted successfully.');
     }
 }

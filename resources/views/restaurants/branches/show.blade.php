@@ -52,7 +52,7 @@
 
             {{-- Back --}}
             <div class="flex justify-end mt-6">
-                <a href=""
+                <a href="{{ route('restaurants.show', ['restaurant' => $branch->restaurant_id]) }}"
                    class="bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">
                     ← Back to Restaurant
                 </a>
