@@ -13,7 +13,7 @@ class StoreRestaurantDto
         public string $founded_at,
         public int    $employee_numbers,
         public int    $founder_id,
-        public int    $phone_number
+        public string $phone_number
     )
     {
     }

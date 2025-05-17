@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Dtos\Restaurants\StoreRestaurantDto;
 use App\Dtos\Restaurants\UpdateRestaurantDto;
-use App\Events\RestaurantCreatedEvent;
 use App\Models\Restaurant;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -26,7 +25,7 @@ class RestaurantService
         // background bir ikki ish qilishim kere
         // email jonatish, banner ni kichiklashtirish
 
-        RestaurantCreatedEvent::dispatch($restaurant->id);
+//        RestaurantCreatedEvent::dispatch($restaurant->id);
     }
 
 

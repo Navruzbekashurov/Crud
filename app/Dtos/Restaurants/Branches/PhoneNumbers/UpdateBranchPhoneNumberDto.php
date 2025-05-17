@@ -3,7 +3,7 @@
 namespace App\Dtos\Restaurants\Branches\PhoneNumbers;
 
 
-use App\Http\Requests\Branches\PhoneNumbers\UpdateNumbersRequest;
+use App\Http\Requests\Branches\PhoneNumbers\UpdateBranchPhoneNumbersRequest;
 
 class UpdateBranchPhoneNumberDto
 {
@@ -14,7 +14,7 @@ class UpdateBranchPhoneNumberDto
     {
     }
 
-    public function fromRequest(UpdateNumbersRequest $request): UpdateBranchPhoneNumberDto
+    public static function fromRequest(UpdateBranchPhoneNumbersRequest $request): UpdateBranchPhoneNumberDto
     {
         return new self(
             $request->validated('branch_id'),

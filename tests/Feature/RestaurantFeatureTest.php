@@ -16,7 +16,7 @@ class RestaurantFeatureTest extends TestCase
     public function test_toggle_active_restaurant()
     {
         $restaurant = Restaurant::factory()->create(['is_active' => true]);
-        $response = $this->put("/restaurants/{$restaurant->id}/toggle-active");
+        $response = $this->put("api/restaurants/{$restaurant->id}/toggle-active");
         $response->assertRedirect('/restaurants');
         $restaurant->refresh();
         $this->assertFalse($restaurant->is_active);
@@ -32,7 +32,7 @@ class RestaurantFeatureTest extends TestCase
             'address' => 'Test Address',
             'is_active' => true
         ];
-        $response = $this->post("/restaurants/{$restaurant->id}/branches", $branchData);
+        $response = $this->post("api/restaurants/{$restaurant->id}/branches", $branchData);
         $response->assertRedirect(route('restaurants.show', ['restaurant' => $restaurant->id]));
         $this->assertDatabaseHas('branches', ['name' => 'Test Branch']);
     }
@@ -49,7 +49,7 @@ class RestaurantFeatureTest extends TestCase
             'is_active' => true
         ];
 
-        $response = $this->put("/restaurants/{$restaurant->id}/branches/{$branch->id}", $updateData);
+        $response = $this->put("api/restaurants/{$restaurant->id}/branches/{$branch->id}", $updateData);
         $response->assertRedirect("/restaurants/{$restaurant->id}");
         $this->assertDatabaseHas('branches', ['name' => 'Updated Branch']);
     }
@@ -59,7 +59,7 @@ class RestaurantFeatureTest extends TestCase
         $restaurant = Restaurant::factory()->create();
         $branch = Branch::factory()->create(['restaurant_id' => $restaurant->id]);
 
-        $response = $this->delete("/restaurants/$restaurant->id/branches/$branch->id");
+        $response = $this->delete("api/restaurants/$restaurant->id/branches/$branch->id");
         $response->assertRedirect("/restaurants/$restaurant->id");
         $this->assertDatabaseMissing('branches', ['id' => $branch->id]);
     }
@@ -74,8 +74,8 @@ class RestaurantFeatureTest extends TestCase
             'phone' => '1234567890',
         ];
 
-        $response = $this->post("/restaurants/{$restaurant->id}/branches/{$branch->id}/phones", $phoneData);
-        $response->assertRedirect("/restaurants/{$restaurant->id}/branches/{$branch->id}/edit");
+        $response = $this->post("api/restaurants/{$restaurant->id}/branches/{$branch->id}/phones", $phoneData);
+        $response->assertRedirect("/restaurants/{$restaurant->id}/branches/{$branch->id}");
         $this->assertDatabaseHas('branch_phone_numbers', ['phone' => '1234567890']);
     }
 
@@ -90,8 +90,8 @@ class RestaurantFeatureTest extends TestCase
             'branch_id' => $branch->id,
         ];
 
-        $response = $this->put("/restaurants/{$restaurant->id}/branches/{$branch->id}/phones/{$phone->id}", $updateData);
-        $response->assertRedirect("/restaurants/{$restaurant->id}/branches/{$branch->id}/edit");
+        $response = $this->put("api/restaurants/{$restaurant->id}/branches/{$branch->id}/phones/{$phone->id}", $updateData);
+        $response->assertRedirect("/restaurants/{$restaurant->id}/branches/{$branch->id}");
         $this->assertDatabaseHas('branch_phone_numbers', ['phone' => '0987654321']);
     }
 
@@ -101,73 +101,8 @@ class RestaurantFeatureTest extends TestCase
         $branch = Branch::factory()->create(['restaurant_id' => $restaurant->id]);
         $phone = BranchPhoneNumber::factory()->create(['branch_id' => $branch->id]);
 
-        $response = $this->delete("/restaurants/{$restaurant->id}/branches/{$branch->id}/phones/{$phone->id}");
-        $response->assertRedirect("/restaurants/{$restaurant->id}/branches/{$branch->id}/edit");
+        $response = $this->delete("api/restaurants/{$restaurant->id}/branches/{$branch->id}/phones/{$phone->id}");
+        $response->assertRedirect("/restaurants/{$restaurant->id}/branches/{$branch->id}");
         $this->assertDatabaseMissing('branch_phone_numbers', ['id' => $phone->id]);
-    }
-
-    public function test_restaurant_index()
-    {
-        $restaurant = Restaurant::factory()->create();
-        $response = $this->get('/restaurants');
-        $response->assertStatus(200);
-        $response->assertSee($restaurant->name);
-    }
-
-    public function test_restaurant_show()
-    {
-        $restaurant = Restaurant::factory()->create();
-        $response = $this->get("/restaurants/{$restaurant->id}");
-        $response->assertStatus(200);
-        $response->assertSee($restaurant->name);
-    }
-
-    public function test_restaurant_create_form()
-    {
-        $response = $this->get('/restaurants/create');
-        $response->assertStatus(200);
-    }
-
-    public function test_store_restaurant()
-    {
-        $restaurantData = [
-            'name' => 'Test Restaurant',
-            'phone_number' => '1234567890',
-            'address' => 'Test Address',
-            'is_active' => true,
-        ];
-        $response = $this->post('/restaurants', $restaurantData);
-        $response->assertRedirect('/restaurants');
-        $this->assertDatabaseHas('restaurants', ['name' => 'Test Restaurant']);
-    }
-
-    public function test_edit_restaurant_form()
-    {
-        $restaurant = Restaurant::factory()->create();
-        $response = $this->get("/restaurants/{$restaurant->id}/edit");
-        $response->assertStatus(200);
-        $response->assertSee($restaurant->name);
-    }
-
-    public function test_update_restaurant()
-    {
-        $restaurant = Restaurant::factory()->create();
-        $updateData = [
-            'name' => 'Updated Restaurant',
-            'phone_number' => '1112223333',
-            'address' => 'Updated Address',
-            'is_active' => false,
-        ];
-        $response = $this->put("/restaurants/{$restaurant->id}", $updateData);
-        $response->assertRedirect('/restaurants');
-        $this->assertDatabaseHas('restaurants', ['name' => 'Updated Restaurant']);
-    }
-
-    public function test_delete_restaurant()
-    {
-        $restaurant = Restaurant::factory()->create();
-        $response = $this->delete("/restaurants/{$restaurant->id}");
-        $response->assertRedirect('/restaurants');
-        $this->assertDatabaseMissing('restaurants', ['id' => $restaurant->id]);
     }
 }

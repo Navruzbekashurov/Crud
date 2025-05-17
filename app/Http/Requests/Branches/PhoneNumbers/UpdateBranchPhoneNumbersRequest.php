@@ -4,12 +4,12 @@ namespace App\Http\Requests\Branches\PhoneNumbers;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateNumbersRequest extends FormRequest
+class UpdateBranchPhoneNumbersRequest extends FormRequest
 {
     public function rules(): array
     {
         return [
-            'branch_id' => ['required', 'exists:branches'],
+            'branch_id' => ['required', 'exists:branch_phone_numbers,branch_id'],
             'phone' => ['required'],
         ];
     }
