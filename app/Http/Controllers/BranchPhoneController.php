@@ -15,28 +15,23 @@ class BranchPhoneController extends Controller
     {
     }
 
-    public function index()
-    {
-        $phones = BranchPhoneNumber::all();
-
-        return view('restaurants.index', compact('phones'));
-    }
 
     public function store(StoreNumbersRequest $request)
     {
         $this->numbersService->create(StoreBranchPhoneNumberDto::fromRequest($request));
 
-        return redirect()->route('restaurants.index');
+        return redirect()->route('branches.edit', ['branch' => $request->branch_id])
+            ->with('success', 'Phone number added.');
     }
 
-    public function create()
+    public function create(int $branchId)
     {
-        return view('restaurants.index');
+        return view('restaurants.branches.phones.create', compact('branchId'));
     }
 
     public function edit(BranchPhoneNumber $number)
     {
-        return redirect()->route('restaurants.edit', compact('number'));
+        return view('restaurants.branches.phones.edit', compact('number'));
     }
 
     public function update(UpdateNumbersRequest $request, int $id)
@@ -47,7 +42,10 @@ class BranchPhoneController extends Controller
 
     public function destroy(BranchPhoneNumber $number)
     {
+        $branchId = $number->branch_id;
         $number->delete();
-        return redirect()->route('restaurants.index');
+
+        return redirect()->route('branches.edit', ['branch' => $branchId])
+            ->with('success', 'Phone number deleted.');
     }
 }

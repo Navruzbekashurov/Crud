@@ -31,12 +31,17 @@ class BranchController extends Controller
 
     public function create()
     {
-        return view('restaurants.create');
+        return view('restaurants.branches.create');
     }
 
     public function edit(Branch $branch)
     {
         return view('restaurants.branches.edit', compact('branch'));
+    }
+
+    public function show(Branch $branch)
+    {
+        return view('restaurants.branches.show', compact('branch'));
     }
 
     public function update(UpdateBranchRequest $request, int $id)
@@ -47,7 +52,10 @@ class BranchController extends Controller
 
     public function destroy(Branch $branch): RedirectResponse
     {
+        $restaurantId = $branch->restaurant_id;
         $branch->delete();
-        return redirect()->route('restaurants.index')->with('success');
+
+        return redirect()->route('restaurants.show', ['restaurant' => $restaurantId])
+            ->with('success', 'Branch deleted successfully.');
     }
 }
