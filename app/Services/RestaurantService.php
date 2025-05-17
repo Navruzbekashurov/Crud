@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Dtos\Restaurants\StoreRestaurantsDto;
-use App\Dtos\Restaurants\UpdateRestaurantsDto;
+use App\Dtos\Restaurants\StoreRestaurantDto;
+use App\Dtos\Restaurants\UpdateRestaurantDto;
 use App\Events\RestaurantCreatedEvent;
 use App\Models\Restaurant;
 use Exception;
@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 class RestaurantService
 {
 
-    public function create(StoreRestaurantsDto $dto): void
+    public function create(StoreRestaurantDto $dto): void
     {
         $restaurant = new Restaurant();
         $restaurant->name = $dto->name;
@@ -30,7 +30,7 @@ class RestaurantService
     }
 
 
-    public function update(int $id, UpdateRestaurantsDto $dto): void
+    public function update(int $id, UpdateRestaurantDto $dto): void
     {
         $restaurant = Restaurant::query()
             ->where('id', $id)

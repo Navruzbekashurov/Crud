@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Dtos\Restaurants\StoreRestaurantsDto;
-use App\Dtos\Restaurants\UpdateRestaurantsDto;
+use App\Dtos\Restaurants\StoreRestaurantDto;
+use App\Dtos\Restaurants\UpdateRestaurantDto;
 use App\Http\Requests\Restaurant\StoreRestaurantRequest;
 use App\Http\Requests\Restaurant\UpdateRestaurantRequest;
 use App\Models\Restaurant;
@@ -33,7 +33,7 @@ class RestaurantController extends Controller
 
     public function store(StoreRestaurantRequest $request)
     {
-        $this->restaurantService->create(StoreRestaurantsDto::fromRequest($request));
+        $this->restaurantService->create(StoreRestaurantDto::fromRequest($request));
 
         return redirect()->route('restaurants.index');
     }
@@ -56,7 +56,7 @@ class RestaurantController extends Controller
 
     public function update(UpdateRestaurantRequest $request, int $id)
     {
-        $this->restaurantService->update($id, UpdateRestaurantsDto::fromRequest($request));
+        $this->restaurantService->update($id, UpdateRestaurantDto::fromRequest($request));
 
         return redirect()->route('restaurants.index')->with('success');
     }

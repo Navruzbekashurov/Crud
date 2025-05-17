@@ -2,14 +2,14 @@
 
 namespace App\Services;
 
-use App\Dtos\Restaurants\Branches\PhoneNumbers\StoreNumbersDto;
-use App\Dtos\Restaurants\Branches\PhoneNumbers\UpdateNumbersDto;
+use App\Dtos\Restaurants\Branches\PhoneNumbers\StoreBranchPhoneNumberDto;
+use App\Dtos\Restaurants\Branches\PhoneNumbers\UpdateBranchPhoneNumberDto;
 use App\Models\BranchPhoneNumber;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class NumbersService
 {
-    public function create(StoreNumbersDto $dto): void
+    public function create(StoreBranchPhoneNumberDto $dto): void
     {
         $number = new BranchPhoneNumber();
 
@@ -19,7 +19,7 @@ class NumbersService
 
     }
 
-    public function update(int $id, UpdateNumbersDto $dto): void
+    public function update(int $id, UpdateBranchPhoneNumberDto $dto): void
     {
         $number = BranchPhoneNumber::query()
             ->where('id', $id)

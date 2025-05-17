@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Dtos\Restaurants\Branches\StoreBranchDto;
-use App\Dtos\Restaurants\Branches\UpdateBranchesDto;
+use App\Dtos\Restaurants\Branches\UpdateBranchDto;
 use App\Models\Branch;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -19,7 +19,7 @@ class BranchService
 
     }
 
-    public function update(int $id, UpdateBranchesDto $dto): void
+    public function update(int $id, UpdateBranchDto $dto): void
     {
         $branch = Branch::query()
             ->where('id', $id)

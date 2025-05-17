@@ -4,7 +4,7 @@ namespace App\Dtos\Restaurants;
 
 use App\Http\Requests\Restaurant\UpdateRestaurantRequest;
 
-class UpdateRestaurantsDto
+class UpdateRestaurantDto
 {
 
     public function __construct(
@@ -18,7 +18,7 @@ class UpdateRestaurantsDto
     }
 
 
-    public static function fromRequest(UpdateRestaurantRequest $request): UpdateRestaurantsDto
+    public static function fromRequest(UpdateRestaurantRequest $request): UpdateRestaurantDto
     {
         return new self(
             $request->validated('name'),

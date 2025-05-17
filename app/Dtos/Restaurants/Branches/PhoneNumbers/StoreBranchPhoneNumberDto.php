@@ -2,10 +2,9 @@
 
 namespace App\Dtos\Restaurants\Branches\PhoneNumbers;
 
+use App\Http\Requests\Branches\PhoneNumbers\StoreNumbersRequest;
 
-use App\Http\Requests\Branches\PhoneNumbers\UpdateNumbersRequest;
-
-class UpdateNumbersDto
+class StoreBranchPhoneNumberDto
 {
     public function __construct(
 
@@ -15,11 +14,12 @@ class UpdateNumbersDto
     {
     }
 
-    public function fromRequest(UpdateNumbersRequest $request): UpdateNumbersDto
+    public function fromRequest(StoreNumbersRequest $request): StoreBranchPhoneNumberDto
     {
         return new self(
             $request->validated('branch_id'),
             $request->validated('phone')
         );
     }
+
 }

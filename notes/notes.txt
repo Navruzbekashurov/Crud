@@ -82,3 +82,10 @@ branch_working_days
             day_off
         ]
     ]
+
+
+restaurants/{id}/branches -> crud
+restaurants/{id}/branches/{id}/phones ->crud
+restaurants/{id}/branches/{id}/work-time -> crud degan edim
+
+restaurants -> branches -> phones/work-time

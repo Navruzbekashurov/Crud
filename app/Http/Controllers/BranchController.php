@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Dtos\Restaurants\Branches\StoreBranchDto;
-use App\Dtos\Restaurants\Branches\UpdateBranchesDto;
+use App\Dtos\Restaurants\Branches\UpdateBranchDto;
 use App\Http\Requests\Branches\StoreBranchRequest;
 use App\Http\Requests\Branches\UpdateBranchRequest;
 use App\Models\Branch;
@@ -41,7 +41,7 @@ class BranchController extends Controller
 
     public function update(UpdateBranchRequest $request, int $id)
     {
-        $this->branchService->update($id, UpdateBranchesDto::fromRequest($request));
+        $this->branchService->update($id, UpdateBranchDto::fromRequest($request));
         return redirect()->route('restaurants.show', ['restaurant' => $request->restaurant_id]);
     }
 

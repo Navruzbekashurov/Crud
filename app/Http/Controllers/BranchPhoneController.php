@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Dtos\Restaurants\Branches\PhoneNumbers\StoreNumbersDto;
-use App\Dtos\Restaurants\Branches\PhoneNumbers\UpdateNumbersDto;
+use App\Dtos\Restaurants\Branches\PhoneNumbers\StoreBranchPhoneNumberDto;
+use App\Dtos\Restaurants\Branches\PhoneNumbers\UpdateBranchPhoneNumberDto;
 use App\Http\Requests\Branches\PhoneNumbers\StoreNumbersRequest;
 use App\Http\Requests\Branches\PhoneNumbers\UpdateNumbersRequest;
 use App\Models\BranchPhoneNumber;
@@ -24,7 +24,7 @@ class BranchPhoneController extends Controller
 
     public function store(StoreNumbersRequest $request)
     {
-        $this->numbersService->create(StoreNumbersDto::fromRequest($request));
+        $this->numbersService->create(StoreBranchPhoneNumberDto::fromRequest($request));
 
         return redirect()->route('restaurants.index');
     }
@@ -41,7 +41,7 @@ class BranchPhoneController extends Controller
 
     public function update(UpdateNumbersRequest $request, int $id)
     {
-        $this->numbersService->update($id, UpdateNumbersDto::fromRequest($request));
+        $this->numbersService->update($id, UpdateBranchPhoneNumberDto::fromRequest($request));
         return redirect()->route('restaurants.index')->with('success');
     }
 
@@ -50,5 +50,4 @@ class BranchPhoneController extends Controller
         $number->delete();
         return redirect()->route('restaurants.index');
     }
-    //
 }

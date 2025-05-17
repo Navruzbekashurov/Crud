@@ -5,7 +5,7 @@ namespace App\Dtos\Restaurants\Branches;
 
 use App\Http\Requests\Branches\UpdateBranchRequest;
 
-class UpdateBranchesDto
+class UpdateBranchDto
 {
     public function __construct(
         public string $name,
@@ -15,7 +15,7 @@ class UpdateBranchesDto
     {
     }
 
-    public static function fromRequest(UpdateBranchRequest $request): UpdateBranchesDto
+    public static function fromRequest(UpdateBranchRequest $request): UpdateBranchDto
     {
         return new self(
             $request->validated('name'),

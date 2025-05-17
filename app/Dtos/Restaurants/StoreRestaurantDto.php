@@ -4,7 +4,7 @@ namespace App\Dtos\Restaurants;
 
 use App\Http\Requests\Restaurant\StoreRestaurantRequest;
 
-class StoreRestaurantsDto
+class StoreRestaurantDto
 {
 
     public function __construct(
@@ -18,7 +18,7 @@ class StoreRestaurantsDto
     {
     }
 
-    public static function fromRequest(StoreRestaurantRequest $request): StoreRestaurantsDto
+    public static function fromRequest(StoreRestaurantRequest $request): StoreRestaurantDto
     {
         return new self(
             $request->validated('name'),
