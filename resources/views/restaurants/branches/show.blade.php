@@ -26,7 +26,7 @@
             <div class="border-b pb-4">
                 <h2 class="text-sm font-medium text-gray-500">Phone Numbers</h2>
                 @forelse ($branch->phone as $phone)
-                    <p class="mt-1 text-gray-900">{{ $phone->number }}</p>
+                    <p class="mt-1 text-gray-900">{{ $phone ->number }}</p>
                 @empty
                     <p class="text-gray-400">No phone numbers added.</p>
                 @endforelse
