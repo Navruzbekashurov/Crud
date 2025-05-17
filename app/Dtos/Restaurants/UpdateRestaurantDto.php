@@ -11,8 +11,9 @@ class UpdateRestaurantDto
         public string $name,
         public string $address,
         public string $founded_at,
-        public int $founder_id,
-        public  int $employee_numbers,
+        public int    $founder_id,
+        public int    $employee_numbers,
+        public string $phone_number
     )
     {
     }
@@ -25,7 +26,8 @@ class UpdateRestaurantDto
             $request->validated('address'),
             $request->validated('founded_at'),
             $request->validated('founder_id'),
-            $request->validated('employee_numbers')
+            $request->validated('employee_numbers'),
+            $request->validated('phone_number')
         );
 
     }

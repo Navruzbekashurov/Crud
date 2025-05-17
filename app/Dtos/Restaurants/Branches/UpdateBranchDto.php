@@ -10,7 +10,8 @@ class UpdateBranchDto
     public function __construct(
         public string $name,
         public string $address,
-        public int    $restaurant_id
+        public int    $restaurant_id,
+        public bool   $is_active
     )
     {
     }
@@ -21,6 +22,7 @@ class UpdateBranchDto
             $request->validated('name'),
             $request->validated('address'),
             $request->validated('restaurant_id'),
+            $request->validated('is_active')
         );
     }
 

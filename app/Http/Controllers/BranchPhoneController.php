@@ -54,4 +54,6 @@ class BranchPhoneController extends Controller
         return redirect()->route('restaurants.branches.show', ['restaurant' => $restaurant, 'branch' => $branch])
             ->with('success', 'Phone number deleted.');
     }
+
+    
 }

@@ -15,6 +15,7 @@ class BranchService
         $branch->restaurant_id = $dto->restaurant_id;
         $branch->name = $dto->name;
         $branch->address = $dto->address;
+        $branch->is_active = $dto->is_active;
         $branch->save();
         return $branch;
     }
@@ -31,6 +32,7 @@ class BranchService
         $branch->restaurant_id = $dto->restaurant_id;
         $branch->name = $dto->name;
         $branch->address = $dto->address;
+        $branch->is_active = $dto->is_active;
         $branch->save();
     }
 
