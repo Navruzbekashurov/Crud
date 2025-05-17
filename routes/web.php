@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BranchesController;
+use App\Http\Controllers\PhonesController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -11,3 +13,6 @@ Route::get('/', function () {
 Route::resource('users', UserController::class);
 Route::resource('restaurants', RestaurantController::class)->middleware(['simple', 'simple1']);
 Route::put('/restaurants/{id}/toggle-active', [RestaurantController::class, 'toggleActive']);
+
+Route::resource('branches', BranchesController::class);
+Route::resource('phone', PhonesController::class);
