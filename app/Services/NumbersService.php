@@ -19,7 +19,7 @@ class NumbersService
 
     }
 
-    public function update(int $id, UpdateNumbersDto $dto)
+    public function update(int $id, UpdateNumbersDto $dto): void
     {
         $number = BranchPhoneNumber::query()
             ->where('id', $id)

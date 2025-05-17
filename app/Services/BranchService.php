@@ -2,14 +2,14 @@
 
 namespace App\Services;
 
-use App\Dtos\Restaurants\Branches\StoreBranchesDto;
+use App\Dtos\Restaurants\Branches\StoreBranchDto;
 use App\Dtos\Restaurants\Branches\UpdateBranchesDto;
 use App\Models\Branch;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class BranchService
 {
-    public function create(StoreBranchesDto $dto): void
+    public function create(StoreBranchDto $dto): void
     {
         $branch = new Branch();
         $branch->restaurant_id = $dto->restaurant_id;

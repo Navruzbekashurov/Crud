@@ -9,7 +9,7 @@ use App\Http\Requests\Branches\PhoneNumbers\UpdateNumbersRequest;
 use App\Models\BranchPhoneNumber;
 use App\Services\NumbersService;
 
-class PhonesController extends Controller
+class BranchPhoneController extends Controller
 {
     public function __construct(private readonly NumbersService $numbersService)
     {

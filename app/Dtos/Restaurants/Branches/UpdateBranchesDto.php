@@ -21,7 +21,6 @@ class UpdateBranchesDto
             $request->validated('name'),
             $request->validated('address'),
             $request->validated('restaurant_id'),
-
         );
     }
 

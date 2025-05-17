@@ -9,7 +9,7 @@ class StoreBranchRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'restaurant_id' => ['required','exists:restaurant_id'],
+            'restaurant_id' => ['required', 'exists:restaurants,id'],
             'name' => ['required'],
             'address' => ['required'],
             'is_active' => ['required', 'boolean']

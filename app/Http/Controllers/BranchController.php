@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Dtos\Restaurants\Branches\StoreBranchesDto;
+use App\Dtos\Restaurants\Branches\StoreBranchDto;
 use App\Dtos\Restaurants\Branches\UpdateBranchesDto;
 use App\Http\Requests\Branches\StoreBranchRequest;
 use App\Http\Requests\Branches\UpdateBranchRequest;
@@ -10,7 +10,7 @@ use App\Models\Branch;
 use App\Services\BranchService;
 use Illuminate\Http\RedirectResponse;
 
-class BranchesController extends Controller
+class BranchController extends Controller
 {
     public function __construct(private readonly BranchService $branchService)
     {
@@ -24,9 +24,9 @@ class BranchesController extends Controller
 
     public function store(StoreBranchRequest $request): RedirectResponse
     {
-        $this->branchService->create(StoreBranchesDto::fromRequest($request));
+        $this->branchService->create(StoreBranchDto::fromRequest($request));
 
-        return redirect()->route('restaurants.index');
+        return redirect()->route('restaurants.show', ['restaurant' => $request->restaurant_id]);
     }
 
     public function create()
@@ -36,13 +36,13 @@ class BranchesController extends Controller
 
     public function edit(Branch $branch)
     {
-        return view('restaurants.edit', compact('branch'));
+        return view('restaurants.branches.edit', compact('branch'));
     }
 
     public function update(UpdateBranchRequest $request, int $id)
     {
         $this->branchService->update($id, UpdateBranchesDto::fromRequest($request));
-        return redirect()->route('restaurants.index')->with('success');
+        return redirect()->route('restaurants.show', ['restaurant' => $request->restaurant_id]);
     }
 
     public function destroy(Branch $branch): RedirectResponse

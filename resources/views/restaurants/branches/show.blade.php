@@ -17,6 +17,11 @@
                 <p class="mt-1 text-lg text-gray-900">{{ $branch->address }}</p>
             </div>
 
+            <div class="border-b pb-4">
+                <h2 class="text-sm font-medium text-gray-500">Active</h2>
+                <p class="mt-1 text-lg text-gray-900">{{ $branch->is_active }}</p>
+            </div>
+
             {{-- Phones --}}
             <div class="border-b pb-4">
                 <h2 class="text-sm font-medium text-gray-500">Phone Numbers</h2>

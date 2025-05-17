@@ -4,7 +4,7 @@ namespace App\Dtos\Restaurants\Branches;
 
 use App\Http\Requests\Branches\StoreBranchRequest;
 
-class StoreBranchesDto
+class StoreBranchDto
 {
     public function __construct(
         public string $name,
@@ -14,15 +14,12 @@ class StoreBranchesDto
     {
     }
 
-    public static function fromRequest(StoreBranchRequest $request): StoreBranchesDto
+    public static function fromRequest(StoreBranchRequest $request): StoreBranchDto
     {
         return new self(
             $request->validated('name'),
             $request->validated('address'),
             $request->validated('restaurant_id'),
-
         );
     }
-
-
 }
