@@ -19,7 +19,7 @@ class Restaurant extends Model
         'founded_at',
         'employee_numbers',
         'founder_id',
-        'phone_numbers'
+        'phone_number'
     ];
 
     protected $casts = [
