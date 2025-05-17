@@ -5,13 +5,12 @@ namespace Tests\Feature;
 use App\Models\Branch;
 use App\Models\BranchPhoneNumber;
 use App\Models\Restaurant;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
 
 class RestaurantFeatureTest extends TestCase
 {
-    use RefreshDatabase, WithoutMiddleware;
+    use  WithoutMiddleware;
 
     public function test_toggle_active_restaurant()
     {
