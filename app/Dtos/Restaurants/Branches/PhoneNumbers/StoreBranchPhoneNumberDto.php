@@ -7,14 +7,13 @@ use App\Http\Requests\Branches\PhoneNumbers\StoreNumbersRequest;
 class StoreBranchPhoneNumberDto
 {
     public function __construct(
-
         public int    $branch_id,
         public string $phone
     )
     {
     }
 
-    public function fromRequest(StoreNumbersRequest $request): StoreBranchPhoneNumberDto
+    public static function fromRequest(StoreNumbersRequest $request): StoreBranchPhoneNumberDto
     {
         return new self(
             $request->validated('branch_id'),

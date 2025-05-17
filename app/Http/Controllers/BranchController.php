@@ -9,6 +9,7 @@ use App\Http\Requests\Branches\UpdateBranchRequest;
 use App\Models\Branch;
 use App\Models\Restaurant;
 use App\Services\BranchService;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 
 class BranchController extends Controller
@@ -45,17 +46,26 @@ class BranchController extends Controller
         return view('restaurants.branches.show', compact('branch'));
     }
 
-    public function update(UpdateBranchRequest $request, Restaurant $restaurant, Branch $branch)
+    public function update(UpdateBranchRequest $request, int $restaurant, int $branch)
     {
-        $this->branchService->update($branch->id, UpdateBranchDto::fromRequest($request));
-        return redirect()->route('restaurants.show', ['restaurant' => $restaurant->id]);
+        $this->branchService->update($branch, UpdateBranchDto::fromRequest($request));
+        return redirect()->route('restaurants.show', ['restaurant' => $restaurant]);
     }
 
-    public function destroy(Restaurant $restaurant, Branch $branch): RedirectResponse
+    public function destroy(int $restaurant, int $branch): RedirectResponse
     {
+        $branch = Branch::query()
+            ->where('restaurant_id', $restaurant)
+            ->where('id', $branch)
+            ->first();
+
+        if (!$branch) {
+            throw new ModelNotFoundException();
+        }
+
         $branch->delete();
 
-        return redirect()->route('restaurants.show', ['restaurant' => $restaurant->id])
+        return redirect()->route('restaurants.show', ['restaurant' => $restaurant])
             ->with('success', 'Branch deleted successfully.');
     }
 }

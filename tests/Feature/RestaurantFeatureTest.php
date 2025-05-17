@@ -5,12 +5,13 @@ namespace Tests\Feature;
 use App\Models\Branch;
 use App\Models\BranchPhoneNumber;
 use App\Models\Restaurant;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
 
 class RestaurantFeatureTest extends TestCase
 {
-    use  WithoutMiddleware;
+    use RefreshDatabase, WithoutMiddleware;
 
     public function test_toggle_active_restaurant()
     {
@@ -29,6 +30,7 @@ class RestaurantFeatureTest extends TestCase
             'restaurant_id' => $restaurant->id,
             'name' => 'Test Branch',
             'address' => 'Test Address',
+            'is_active' => true
         ];
         $response = $this->post("/restaurants/{$restaurant->id}/branches", $branchData);
         $response->assertRedirect(route('restaurants.show', ['restaurant' => $restaurant->id]));
@@ -44,6 +46,7 @@ class RestaurantFeatureTest extends TestCase
             'restaurant_id' => $restaurant->id,
             'name' => 'Updated Branch',
             'address' => 'Updated Address',
+            'is_active' => true
         ];
 
         $response = $this->put("/restaurants/{$restaurant->id}/branches/{$branch->id}", $updateData);
@@ -56,8 +59,8 @@ class RestaurantFeatureTest extends TestCase
         $restaurant = Restaurant::factory()->create();
         $branch = Branch::factory()->create(['restaurant_id' => $restaurant->id]);
 
-        $response = $this->delete("/restaurants/{$restaurant->id}/branches/{$branch->id}");
-        $response->assertRedirect("/restaurants/{$restaurant->id}");
+        $response = $this->delete("/restaurants/$restaurant->id/branches/$branch->id");
+        $response->assertRedirect("/restaurants/$restaurant->id");
         $this->assertDatabaseMissing('branches', ['id' => $branch->id]);
     }
 

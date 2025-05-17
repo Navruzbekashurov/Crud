@@ -14,7 +14,8 @@ class Branch extends Model
     protected $fillable = [
         'name',
         'address',
-        'restaurant_id'
+        'restaurant_id',
+        'is_active'
     ];
 
     public function restaurant(): BelongsTo
@@ -22,7 +23,7 @@ class Branch extends Model
         return $this->belongsTo(Restaurant::class);
     }
 
-    public function phone(): HasMany
+    public function phones(): HasMany
     {
         return $this->hasMany(BranchPhoneNumber::class);
     }

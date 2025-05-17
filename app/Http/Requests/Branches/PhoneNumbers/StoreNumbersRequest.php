@@ -9,7 +9,7 @@ class StoreNumbersRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'branch_id' => ['required', 'exists:branches'],
+            'branch_id' => ['required', 'exists:branches,id'],
             'phone' => ['required'],
         ];
     }

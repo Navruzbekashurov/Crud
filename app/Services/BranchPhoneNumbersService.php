@@ -7,7 +7,7 @@ use App\Dtos\Restaurants\Branches\PhoneNumbers\UpdateBranchPhoneNumberDto;
 use App\Models\BranchPhoneNumber;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class NumbersService
+class BranchPhoneNumbersService
 {
     public function create(StoreBranchPhoneNumberDto $dto): void
     {
@@ -16,7 +16,6 @@ class NumbersService
         $number->branch_id = $dto->branch_id;
         $number->phone = $dto->phone;
         $number->save();
-
     }
 
     public function update(int $id, UpdateBranchPhoneNumberDto $dto): void
@@ -30,6 +29,5 @@ class NumbersService
         $number->branch_id = $dto->branch_id;
         $number->phone = $dto->phone;
         $number->save();
-
     }
 }
