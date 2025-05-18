@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Dtos\Restaurants\Branches\WorkTime\StoreBranchWorkTimeDto;
 use App\Http\Requests\Branches\WorkTime\StoreBranchWorkTimeRequest;
-use App\Models\BranchWorkTime;
 use App\Services\BranchWorkTimeService;
 
 class BranchWorkTimeController extends Controller
@@ -12,12 +11,6 @@ class BranchWorkTimeController extends Controller
     public function __construct(private readonly BranchWorkTimeService $branchWorkTimeService)
     {
 
-    }
-
-    public function index()
-    {
-        $time = BranchWorkTime::all();
-        return redirect()->route('restaurants.index');
     }
 
     public function store(StoreBranchWorkTimeRequest $request)
@@ -29,15 +22,12 @@ class BranchWorkTimeController extends Controller
 
     public function create()
     {
-        return redirect()->route('restaurants.index');
+        return view('restaurants.branches.work-times.create');
     }
 
     public function edit()
     {
-    }
-
-    public function show()
-    {
+        return view('restaurants.branches.work-times.edit');
     }
 
     public function update()

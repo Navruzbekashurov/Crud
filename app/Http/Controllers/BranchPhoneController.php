@@ -25,14 +25,12 @@ class BranchPhoneController extends Controller
             ->with('success', 'Phone number added.');
     }
 
-    public function create(int $branchId)
+    public function create(int $restaurant, int $branch)
     {
-        return view('restaurants.branches.phones.create', compact('branchId'));
-    }
-
-    public function edit(BranchPhoneNumber $number)
-    {
-        return view('restaurants.branches.phones.edit', compact('number'));
+        return view('restaurants.branches.phones.create', [
+            'restaurant' => $restaurant,
+            'branch' => $branch
+        ]);
     }
 
     public function update(UpdateBranchPhoneNumbersRequest $request, int $restaurant, int $branch, int $phone)
@@ -55,5 +53,5 @@ class BranchPhoneController extends Controller
             ->with('success', 'Phone number deleted.');
     }
 
-    
+
 }
