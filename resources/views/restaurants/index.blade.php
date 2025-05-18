@@ -72,7 +72,15 @@
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $restaurant->id }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ Str::limit($restaurant->name, 10) }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $restaurant->phone_number }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $restaurant->is_active }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm">
+                            @if ($restaurant->is_active)
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Active</span>
+                            @else
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">Inactive</span>
+                            @endif
+                        </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ Str::limit($restaurant->address, 10) }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $restaurant->founder->name }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
