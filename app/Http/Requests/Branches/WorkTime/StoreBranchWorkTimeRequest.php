@@ -9,11 +9,12 @@ class StoreBranchWorkTimeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'branch_id' => ['required', 'exists:branches,id'],
-            'day' => ['required|string|max:255'],
-            'open_time' => ['required', 'date'],
-            'close_time' => ['required', 'date'],
-            'day_off' => ['boolean'],
+            'work_times' => ['required', 'array'],
+            'work_times.*.branch_id' => ['required', 'exists:branches,id'],
+            'work_times.*.day' => ['required', 'string', 'max:255'],
+            'work_times.*.open_time' => ['required', 'date_format:H:i'],
+            'work_times.*.close_time' => ['required', 'date_format:H:i'],
+            'work_times.*.day_off' => ['sometimes', 'boolean'],
         ];
     }
 
