@@ -33,9 +33,9 @@ class BranchWorkTimeController extends Controller
         return view('restaurants.branches.work-times.edit');
     }
 
-    public function update(UpdateBranchWorkTimeRequest $request)
+    public function update(UpdateBranchWorkTimeRequest $request, int $workTime)
     {
-        $this->branchWorkTimeService->update(UpdateBranchWorkTimeDto::fromRequest($request));
+        $this->branchWorkTimeService->update($workTime, UpdateBranchWorkTimeDto::fromRequest($request));
 
         return redirect()->route('restaurants.index');
     }
