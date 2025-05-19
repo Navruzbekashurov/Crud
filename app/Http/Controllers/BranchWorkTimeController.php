@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Dtos\Restaurants\Branches\WorkTime\StoreBranchWorkTimeDto;
+use App\Dtos\Restaurants\Branches\WorkTime\UpdateBranchWorkTimeDto;
 use App\Http\Requests\Branches\WorkTime\StoreBranchWorkTimeRequest;
+use App\Http\Requests\Branches\WorkTime\UpdateBranchWorkTimeRequest;
 use App\Models\BranchWorkTime;
 use App\Services\BranchWorkTimeService;
 
@@ -16,7 +18,7 @@ class BranchWorkTimeController extends Controller
 
     public function index()
     {
-        $time = BranchWorkTime::all();
+        $time = BranchWorkTime::with('branch')->get();
         return redirect()->route('restaurants.index');
     }
 
@@ -32,20 +34,37 @@ class BranchWorkTimeController extends Controller
         return redirect()->route('restaurants.index');
     }
 
-    public function edit()
+    public function edit(BranchWorkTime $branchWorkTime)
     {
+        return redirect()->route('restaurants.index', compact('branchWorkTime'));
     }
 
-    public function show()
+    public function show(BranchWorkTime $branchWorkTime)
     {
+        return view('restaurants.index', compact('branchWorkTime'));
     }
 
-    public function update()
+    public function update(UpdateBranchWorkTimeRequest $request)
     {
+        $this->branchWorkTimeService->update(UpdateBranchWorkTimeDto::fromRequest($request));
+
+        return redirect()->route('restaurants.index');
     }
 
-    public function destroy()
+    public function destroy(BranchWorkTime $workTime)
     {
+        $workTime->delete();
+
+        return redirect()->route('restaurants.index');
+    }
+
+    public function storeMultiple(StoreBranchWorkTimeRequest $request)
+    {
+        $day = $request->validated();
+
+        $this->branchWorkTimeService->storeMultiple($day);
+
+        return response()->json();
     }
 
 }
