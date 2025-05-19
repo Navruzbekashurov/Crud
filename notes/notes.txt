@@ -46,43 +46,46 @@ branch_phone_numbers -> add_branch_phones, delete_branch_phones
 
 branch_working_days
     [
-        [
-            branch_id
-            day
-            open_time
-            close_time
-            day_off
-        ],
-        [
-            branch_id
-            day
-            open_time
-            close_time
-            day_off
-        ],
-        [
-            branch_id
-            day
-            open_time
-            close_time
-            day_off
-        ],
-        [
-            branch_id
-            day
-            open_time
-            close_time
-            day_off
-        ],
-        [
-            branch_id
-            day
-            open_time
-            close_time
-            day_off
-        ]
+    days => [
+     [
+                branch_id
+                day
+                open_time
+                close_time
+                day_off
+            ],
+            [
+                branch_id
+                day
+                open_time
+                close_time
+                day_off
+            ],
+            [
+                branch_id
+                day
+                open_time
+                close_time
+                day_off
+            ],
+            [
+                branch_id
+                day
+                open_time
+                close_time
+                day_off
+            ],
+            [
+                branch_id
+                day
+                open_time
+                close_time
+                day_off
+            ]
     ]
-
+    ]
+days => required|array
+days.*.branch_id => required|array
 
 restaurants/{id}/branches -> crud
 restaurants/{id}/branches/{id}/phones ->crud
