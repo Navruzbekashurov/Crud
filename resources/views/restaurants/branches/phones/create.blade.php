@@ -4,7 +4,8 @@
     <div class="max-w-md mx-auto mt-10 bg-white p-6 rounded-lg shadow">
         <h1 class="text-2xl font-bold mb-6 text-center">Add Phone Number</h1>
 
-        <form method="POST" action="{{ route('phones.store', ['branch' => $branchId]) }}">
+        <form method="POST"
+              action="{{ route('restaurants.branches.phones.store', ['restaurant' => $restaurant, 'branch' => $branch]) }}">
             @csrf
 
             {{-- Phone --}}
@@ -18,12 +19,10 @@
             </div>
 
             {{-- Hidden Branch ID --}}
-            <input type="hidden" name="branch_id" value="{{ $branchId }}">
+            <input type="hidden" name="branch_id" value="{{ $branch }}">
 
             {{-- Buttons --}}
             <div class="flex justify-between mt-6">
-                <a href="{{ route('branches.edit', ['branch' => $branchId]) }}"
-                   class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-md text-sm">Cancel</a>
                 <button type="submit"
                         class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm">Add Phone
                 </button>

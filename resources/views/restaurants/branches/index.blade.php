@@ -1,3 +1,4 @@
+@php use Carbon\Carbon; @endphp
 {{-- Branches --}}
 <div class="max-w-3xl mx-auto mt-12">
     <div class="flex items-center justify-between mb-6 border-b pb-2">
@@ -28,12 +29,41 @@
                     </form>
                 </div>
             </div>
-            <div class="text-sm text-gray-600 space-y-1">
+            <div class="text-sm text-gray-600 space-y-1 leading-snug">
+                {{-- Address --}}
                 <p><strong>Address:</strong> {{ $branch->address }}</p>
-                <p><strong>Phone:</strong> {{ $branch->phone ?? '-' }}</p>
-                <p><strong>Opening Hours:</strong> {{ $branch->open_time ?? '-' }}
-                    - {{ $branch->close_time ?? '-' }}</p>
+
+                {{-- Phones --}}
+                <p>
+                    <strong>Phones:</strong>
+                    @if ($branch->phones->isNotEmpty())
+                        {{ $branch->phones->pluck('phone')->implode(', ') }}
+                    @else
+                        <span class="text-gray-400">—</span>
+                    @endif
+                </p>
+
+                {{-- Work Time --}}
+                <div>
+                    <strong>Work Time:</strong>
+                    <ul class="text-xs text-gray-500 ml-2 mt-1 space-y-0.5">
+                        @forelse ($branch->branchWorkTime as $time)
+                            <li>
+                                <span class="font-medium">{{ ucfirst($time->day) }}:</span>
+                                @if ($time->day_off)
+                                    <span class="text-red-500">Off</span>
+                                @else
+                                    {{ Carbon::parse($time->open_time)->format('H:i') }}
+                                    - {{ Carbon::parse($time->close_time)->format('H:i') }}
+                                @endif
+                            </li>
+                        @empty
+                            <li class="text-gray-400">No schedule</li>
+                        @endforelse
+                    </ul>
+                </div>
             </div>
+
         </div>
     @empty
         <p class="text-center text-gray-500 mt-6">No branches found.</p>

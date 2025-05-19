@@ -16,12 +16,6 @@ class BranchWorkTimeController extends Controller
 
     }
 
-    public function index()
-    {
-        $time = BranchWorkTime::with('branch')->get();
-        return redirect()->route('restaurants.index');
-    }
-
     public function store(StoreBranchWorkTimeRequest $request)
     {
         $this->branchWorkTimeService->create(StoreBranchWorkTimeDto::fromRequest($request));
@@ -31,17 +25,12 @@ class BranchWorkTimeController extends Controller
 
     public function create()
     {
-        return redirect()->route('restaurants.index');
+        return view('restaurants.branches.work-times.create');
     }
 
-    public function edit(BranchWorkTime $branchWorkTime)
+    public function edit()
     {
-        return redirect()->route('restaurants.index', compact('branchWorkTime'));
-    }
-
-    public function show(BranchWorkTime $branchWorkTime)
-    {
-        return view('restaurants.index', compact('branchWorkTime'));
+        return view('restaurants.branches.work-times.edit');
     }
 
     public function update(UpdateBranchWorkTimeRequest $request)
@@ -68,3 +57,4 @@ class BranchWorkTimeController extends Controller
     }
 
 }
+
