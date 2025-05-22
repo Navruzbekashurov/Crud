@@ -6,6 +6,7 @@ use App\Dtos\Restaurants\Branches\WorkTime\StoreBranchWorkTimeDto;
 use App\Dtos\Restaurants\Branches\WorkTime\UpdateBranchWorkTimeDto;
 use App\Models\BranchWorkTime;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Collection;
 
 class BranchWorkTimeService
 {
@@ -27,16 +28,16 @@ class BranchWorkTimeService
         $workTime->save();
     }
 
-    public function storeMultiple(array $data): void
+    public function storeMultiple(Collection $dtos): void
     {
         //Bunaqasiga array qabul qmen, dto kere
-        foreach ($data['work_times'] as $day) {
+        foreach ($dtos as $dto) {
             BranchWorkTime::create([
-                'branch_id' => $day['branch_id'],
-                'day' => $day['day'],
-                'open_time' => $day['open_time'],
-                'close_time' => $day['close_time'],
-                'day_off' => $day['day_off'] ?? false
+                'branch_id' => $dto->branch_id,
+                'day' => $dto->day,
+                'open_time' => $dto->open_time,
+                'close_time' => $dto->close_time,
+                'day_off' => $dto->day_off ?? false
             ]);
         }
 

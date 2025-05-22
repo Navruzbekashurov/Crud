@@ -27,4 +27,16 @@ class StoreBranchWorkTimeDto
             $request->validated('day_off')
         );
     }
+
+    public static function fromArray(array $data): StoreBranchWorkTimeDto
+    {
+        return new self(
+            $data['branch_id'],
+            $data['day'],
+            $data['open_time'],
+            $data['close_time'],
+            $data['day_off'] ?? false,
+        );
+    }
+
 }

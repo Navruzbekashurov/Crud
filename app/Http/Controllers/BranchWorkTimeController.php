@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Dtos\Restaurants\Branches\WorkTime\StoreBranchWorkTimeDto;
 use App\Dtos\Restaurants\Branches\WorkTime\UpdateBranchWorkTimeDto;
 use App\Http\Requests\Branches\WorkTime\StoreBranchWorkTimeRequest;
 use App\Http\Requests\Branches\WorkTime\UpdateBranchWorkTimeRequest;
@@ -21,7 +22,12 @@ class BranchWorkTimeController extends Controller
     {
         $day = $request->validated();
         //DTO ni ichiga olin
-        $this->branchWorkTimeService->storeMultiple($day);
+        $dto = collect($day['work_times'])->map(function ($item) use ($branch) {
+            $item['branch_id'] = $branch->id; // branch_id ni qo‘shamiz
+            return StoreBranchWorkTimeDto::fromArray($item);
+        });
+
+        $this->branchWorkTimeService->storeMultiple($dto);
 
         return redirect()->route('restaurants.branches.show', ['restaurant' => $restaurant, 'branch' => $branch]);
     }
@@ -48,6 +54,15 @@ class BranchWorkTimeController extends Controller
         $workTime->delete();
 
         return redirect()->route('restaurants.branches.show', ['restaurant' => $restaurant, 'branch' => $branch]);
+    }
+
+    public function delete(Restaurant $restaurant, Branch $branch)
+    {
+        BranchWorkTime::where('branch_id', $branch->id)->delete();
+
+        return redirect()->route('restaurants.branches.show', ['restaurant' => $restaurant, 'branch' => $branch]);
+
+
     }
 }
 
