@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Dtos\Restaurants\Branches\WorkTime\StoreBranchWorkTimeDto;
 use App\Dtos\Restaurants\Branches\WorkTime\UpdateBranchWorkTimeDto;
 use App\Http\Requests\Branches\WorkTime\StoreBranchWorkTimeRequest;
 use App\Http\Requests\Branches\WorkTime\UpdateBranchWorkTimeRequest;
+use App\Models\Branch;
 use App\Models\BranchWorkTime;
+use App\Models\Restaurant;
 use App\Services\BranchWorkTimeService;
 
 class BranchWorkTimeController extends Controller
@@ -16,21 +17,23 @@ class BranchWorkTimeController extends Controller
 
     }
 
-    public function store(StoreBranchWorkTimeRequest $request)
+    public function store(StoreBranchWorkTimeRequest $request, Restaurant $restaurant, Branch $branch)
     {
-        $this->branchWorkTimeService->create(StoreBranchWorkTimeDto::fromRequest($request));
+        $day = $request->validated();
+        //DTO ni ichiga olin
+        $this->branchWorkTimeService->storeMultiple($day);
 
-        return redirect()->route('restaurants.index');
+        return redirect()->route('restaurants.branches.show', ['restaurant' => $restaurant, 'branch' => $branch]);
     }
 
-    public function create()
+    public function create(Restaurant $restaurant, Branch $branch)
     {
-        return view('restaurants.branches.work-times.create');
+        return view('restaurants.branches.work-times.create', ['restaurant' => $restaurant, 'branch' => $branch]);
     }
 
-    public function edit()
+    public function edit(Restaurant $restaurant, Branch $branch)
     {
-        return view('restaurants.branches.work-times.edit');
+        return view('restaurants.branches.work-times.edit', ['restaurant' => $restaurant, 'branch' => $branch]);
     }
 
     public function update(UpdateBranchWorkTimeRequest $request, int $workTime)
@@ -40,21 +43,11 @@ class BranchWorkTimeController extends Controller
         return redirect()->route('restaurants.index');
     }
 
-    public function destroy(BranchWorkTime $workTime)
+    public function destroy(Restaurant $restaurant, Branch $branch, BranchWorkTime $workTime)
     {
         $workTime->delete();
 
-        return redirect()->route('restaurants.index');
+        return redirect()->route('restaurants.branches.show', ['restaurant' => $restaurant, 'branch' => $branch]);
     }
-
-    public function storeMultiple(StoreBranchWorkTimeRequest $request)
-    {
-        $day = $request->validated();
-
-        $this->branchWorkTimeService->storeMultiple($day);
-
-        return response()->json();
-    }
-
 }
 

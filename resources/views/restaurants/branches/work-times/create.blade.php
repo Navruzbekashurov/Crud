@@ -5,7 +5,7 @@
         <h1 class="text-2xl font-bold mb-6 text-center">Set Weekly Work Time</h1>
 
         <form method="POST"
-              action="{{ route('restaurants.branches.work-times.store', ['restaurant' => $restaurant->id, 'branch' => $branch->id]) }}">
+              action="{{ route('restaurants.branches.work-time.store', ['restaurant' => $restaurant->id, 'branch' => $branch->id]) }}">
             @csrf
 
             @php

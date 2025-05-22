@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 class BranchWorkTimeService
 {
 
-    public function update(int $id, UpdateBranchWorkTimeDto $dto)
+    public function update(int $id, UpdateBranchWorkTimeDto $dto): void
     {
         $workTime = BranchWorkTime::query()
             ->where('id', $id)
@@ -25,19 +25,18 @@ class BranchWorkTimeService
         $workTime->day_off = $dto->day_off;
 
         $workTime->save();
-
-
     }
 
-    public function storeMultiple(array $data)
+    public function storeMultiple(array $data): void
     {
-        foreach ($data['work_days'] as $day) {
+        //Bunaqasiga array qabul qmen, dto kere
+        foreach ($data['work_times'] as $day) {
             BranchWorkTime::create([
-                'branch_id' => $data['branch_id'],
+                'branch_id' => $day['branch_id'],
                 'day' => $day['day'],
                 'open_time' => $day['open_time'],
                 'close_time' => $day['close_time'],
-                'day_off' => $day['day_off']
+                'day_off' => $day['day_off'] ?? false
             ]);
         }
 

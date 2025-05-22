@@ -13,7 +13,7 @@ Route::get('/', function () {
 
 Route::resource('users', UserController::class);
 Route::put('/restaurants/{id}/toggle-active', [RestaurantController::class, 'toggleActive']);
-Route::post('/restaurant/{id}/branches/{id}/work-time', [BranchWorkTimeController::class, 'storeMultiple']);
+Route::post('/restaurants/{restaurant}/branches/{branch}/work-time', [BranchWorkTimeController::class, 'storeMultiple']);
 
 
 Route::resource('restaurants', RestaurantController::class);

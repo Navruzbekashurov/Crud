@@ -56,19 +56,34 @@
             <div class="border-b pb-4">
                 <div class="flex items-center justify-between">
                     <h2 class="text-sm font-medium text-gray-500">Weekly Schedule</h2>
-                    {{--                    <a href="{{ route('restaurants.branches.work-times.create', ['restaurant' => $branch->restaurant_id, 'branch' => $branch->id]) }}"--}}
-                    {{--                       class="text-sm text-blue-600 hover:underline font-medium">➕ Add Work Time</a>--}}
+                    <a href="{{ route('restaurants.branches.work-time.create', ['restaurant' => $branch->restaurant_id, 'branch' => $branch->id]) }}"
+                       class="text-sm text-blue-600 hover:underline font-medium">➕ Add Work Time</a>
                 </div>
 
                 @forelse ($branch->branchWorkTime as $time)
-                    <div class="mt-1 text-gray-900">
-                        <span class="font-medium">{{ ucfirst($time->day) }}:</span>
-                        @if ($time->day_off)
-                            <span class="text-red-600">Day Off</span>
-                        @else
-                            {{ Carbon::parse($time->open_time)->format('H:i') }}
-                            - {{ Carbon::parse($time->close_time)->format('H:i') }}
-                        @endif
+                    <div class="mt-1 text-gray-900 flex items-center justify-between">
+                        <div>
+                            <span class="font-medium">{{ ucfirst($time->day) }}:</span>
+                            @if ($time->day_off)
+                                <span class="text-red-600">Day Off</span>
+                            @else
+                                {{ \Carbon\Carbon::parse($time->open_time)->format('H:i') }}
+                                - {{ \Carbon\Carbon::parse($time->close_time)->format('H:i') }}
+                            @endif
+                        </div>
+
+                        <form method="POST"
+                              action="{{ route('restaurants.branches.work-time.destroy', [
+                      'restaurant' => $branch->restaurant_id,
+                      'branch' => $branch->id,
+                      'work_time' => $time->id
+                  ]) }}"
+                              onsubmit="return confirm('Are you sure you want to delete this work time?');"
+                              class="ml-4">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-red-600 hover:underline text-sm">🗑 Delete</button>
+                        </form>
                     </div>
                 @empty
                     <p class="text-gray-400">No work schedule set.</p>
