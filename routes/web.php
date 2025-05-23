@@ -14,7 +14,8 @@ Route::get('/', function () {
 Route::resource('users', UserController::class);
 Route::put('/restaurants/{id}/toggle-active', [RestaurantController::class, 'toggleActive']);
 Route::post('/restaurants/{restaurant}/branches/{branch}/work-time', [BranchWorkTimeController::class, 'storeMultiple']);
-Route::delete('/restaurants/{restaurant}/branches/{branch}/work-time/delete', [BranchWorkTimeController::class, 'delete']);
+Route::delete('/restaurants/{restaurant}/branches/{branch}/work-time/delete', [BranchWorkTimeController::class, 'delete'])
+    ->name('restaurants.branches.work-time.destroyAll');
 
 Route::resource('restaurants', RestaurantController::class);
 

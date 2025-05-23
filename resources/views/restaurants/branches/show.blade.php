@@ -86,9 +86,26 @@
                         </form>
                     </div>
                 @empty
-                    <p class="text-gray-400">No work schedule set.</p>
+                    <p class="text-gray-400 mt-2">No work schedule set.</p>
                 @endforelse
+
+                @if ($branch->branchWorkTime->isNotEmpty())
+                    <form method="POST"
+                          action="{{ route('restaurants.branches.work-time.destroyAll', [
+                            'restaurant' => $branch->restaurant_id,
+                            'branch' => $branch->id
+                    ]) }}"
+                          onsubmit="return confirm('Are you sure you want to delete ALL work times?');"
+                          class="mt-4 text-right">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="text-red-600 hover:underline text-sm font-medium">
+                            ❌ Delete All Work Times
+                        </button>
+                    </form>
+                @endif
             </div>
+
 
             {{-- Back --}}
             <div class="flex justify-end mt-6">

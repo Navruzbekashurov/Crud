@@ -28,19 +28,17 @@ class BranchWorkTimeService
         $workTime->save();
     }
 
-    public function storeMultiple(Collection $dtos): void
+    public function storeMultiple(Collection $workDays): void
     {
-        //Bunaqasiga array qabul qmen, dto kere
-        foreach ($dtos as $dto) {
+        $workDays->map(function (StoreBranchWorkTimeDto $workDay) {
             BranchWorkTime::create([
-                'branch_id' => $dto->branch_id,
-                'day' => $dto->day,
-                'open_time' => $dto->open_time,
-                'close_time' => $dto->close_time,
-                'day_off' => $dto->day_off ?? false
+                'branch_id' => $workDay->branch_id,
+                'day' => $workDay->day,
+                'open_time' => $workDay->open_time,
+                'close_time' => $workDay->close_time,
+                'day_off' => $workDay->day_off ?? false
             ]);
-        }
-
+        });
     }
 
     public function create(StoreBranchWorkTimeDto $dto): void

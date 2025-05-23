@@ -20,10 +20,13 @@ class BranchWorkTimeController extends Controller
 
     public function store(StoreBranchWorkTimeRequest $request, Restaurant $restaurant, Branch $branch)
     {
+//        dd($branch->load('branchWorkTime'));
+//        if ('condition') {
+//        }
+
         $day = $request->validated();
         //DTO ni ichiga olin
         $dto = collect($day['work_times'])->map(function ($item) use ($branch) {
-            $item['branch_id'] = $branch->id; // branch_id ni qo‘shamiz
             return StoreBranchWorkTimeDto::fromArray($item);
         });
 
@@ -61,8 +64,6 @@ class BranchWorkTimeController extends Controller
         BranchWorkTime::where('branch_id', $branch->id)->delete();
 
         return redirect()->route('restaurants.branches.show', ['restaurant' => $restaurant, 'branch' => $branch]);
-
-
     }
 }
 
