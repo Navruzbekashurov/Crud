@@ -92,3 +92,7 @@ restaurants/{id}/branches/{id}/phones ->crud
 restaurants/{id}/branches/{id}/work-time -> crud degan edim
 
 restaurants -> branches -> phones/work-time
+
+
+1) Har bir branchni ozini menulari bolishi kere
+2) Har bir menu da esa ozini ovqatlari boladi, har bir ovqat ichida name, rasm, description, price, rating, is_available
