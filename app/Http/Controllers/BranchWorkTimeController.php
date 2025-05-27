@@ -20,9 +20,12 @@ class BranchWorkTimeController extends Controller
 
     public function store(StoreBranchWorkTimeRequest $request, Restaurant $restaurant, Branch $branch)
     {
-//        dd($branch->load('branchWorkTime'));
-//        if ('condition') {
-//        }
+        $currentCount = $branch->branchWorkTime()->count();
+        $newCount = count($request->input('work_times'));
+
+        if ($currentCount + $newCount > 7) {
+            return redirect()->back()->withErrors(['work_times' => 'Hafta kunlari jami 7 tadan oshmasligi kerak.']);
+        }
 
         $day = $request->validated();
         //DTO ni ichiga olin
